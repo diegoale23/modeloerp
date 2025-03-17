@@ -20,11 +20,13 @@
     <tbody>
         {% for proveedor in proveedores %}
         <tr>
-            <td>{{ proveedor.id }}</td>
+            <td>{{ proveedor.idProveedor }}</td> <!-- Cambiado de id a idProveedor -->
             <td>{{ proveedor.nombre }}</td>
             <td>{{ proveedor.contacto }}</td>
             <td>
-                <a href="{% url 'detalle_proveedor' proveedor.id %}" class="btn btn-info btn-sm">Ver detalles</a>
+                <a href="{% url 'detalle_proveedor' proveedor.idProveedor %}" class="btn btn-info btn-sm">Ver detalles</a>
+                <a href="{% url 'modificar_proveedor' proveedor.idProveedor %}" class="btn btn-warning btn-sm">Modificar</a>
+                <a href="{% url 'eliminar_proveedor' proveedor.idProveedor %}" class="btn btn-danger btn-sm">Eliminar</a>
             </td>
         </tr>
         {% empty %}

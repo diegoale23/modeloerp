@@ -11,19 +11,19 @@ class Usuario(AbstractUser):
             ('administrador', 'Administrador'),
             ('empleado', 'Empleado'),
             ('cliente', 'Cliente')
-        ]
+        ],
+        default='cliente'  # Agregar valor por defecto
     )
     email = models.EmailField(unique=True)
 
-    # Solución a los conflictos: agregar related_name
     groups = models.ManyToManyField(
         'auth.Group',
-        related_name='usuarios_set',  # Cambia el nombre del reverso para evitar conflictos
+        related_name='usuarios_set',
         blank=True
     )
     user_permissions = models.ManyToManyField(
         'auth.Permission',
-        related_name='usuarios_permissions_set',  # Cambia el nombre del reverso para evitar conflictos
+        related_name='usuarios_permissions_set',
         blank=True
     )
 

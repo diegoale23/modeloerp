@@ -3,20 +3,50 @@
 {% block title %}Crear Pedido{% endblock %}
 
 {% block content %}
-<div class="card mx-auto" style="max-width: 600px;">
+<div class="card mx-auto" style="max-width: 800px;">
     <div class="card-header bg-primary text-white text-center">
         <h3 class="card-title mb-0">Crear Pedido</h3>
     </div>
     <div class="card-body">
+        {% if error %}
+            <div class="alert alert-danger">{{ error }}</div>
+        {% endif %}
         <form method="post">
             {% csrf_token %}
             <div class="mb-3">
                 <label for="cliente" class="form-label">Cliente</label>
-                <input type="text" name="cliente" id="cliente" class="form-control" required>
+                <select name="cliente" id="cliente" class="form-control" required>
+                    <option value="">Selecciona un cliente</option>
+                    {% for cliente in clientes %}
+                        <option value="{{ cliente.idUsuario }}">{{ cliente.nombre }} {{ cliente.apellido }}</option>
+                    {% endfor %}
+                </select>
             </div>
             <div class="mb-3">
-                <label for="productos" class="form-label">Productos</label>
-                <textarea name="productos" id="productos" class="form-control" rows="5" required></textarea>
+                <label class="form-label">Productos</label>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Producto</th>
+                            <th>Precio</th>
+                            <th>Cantidad</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for producto in productos %}
+                        <tr>
+                            <td>
+                                <input type="checkbox" name="productos" value="{{ producto.idProducto }}">
+                                {{ producto.nombre }}
+                            </td>
+                            <td>${{ producto.precio }}</td>
+                            <td>
+                                <input type="number" name="cantidades" min="0" value="0" class="form-control" style="width: 100px;">
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
             </div>
             <div class="d-grid">
                 <button type="submit" class="btn btn-primary">Guardar Pedido</button>

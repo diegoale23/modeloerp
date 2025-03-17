@@ -20,11 +20,13 @@
     <tbody>
         {% for usuario in usuarios %}
         <tr>
-            <td>{{ usuario.id }}</td>
+            <td>{{ usuario.idUsuario }}</td>
             <td>{{ usuario.nombre }}</td>
             <td>{{ usuario.apellido }}</td>
             <td>
-                <a href="{% url 'detalle_usuario' usuario.id %}" class="btn btn-info btn-sm">Ver Detalles</a>
+                <a href="{% url 'detalle_usuario' usuario.idUsuario %}" class="btn btn-info btn-sm">Ver Detalles</a>
+                <a href="{% url 'modificar_usuario' usuario.idUsuario %}" class="btn btn-warning btn-sm">Modificar</a>
+                <a href="{% url 'eliminar_usuario' usuario.idUsuario %}" class="btn btn-danger btn-sm">Eliminar</a>
             </td>
         </tr>
         {% empty %}

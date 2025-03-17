@@ -1,6 +1,8 @@
 from django.shortcuts import render, get_object_or_404
 from .models import Reporte
+from django.contrib.auth.decorators import login_required
 
+@login_required
 def lista_reportes(request):
     """
     Muestra la lista de reportes generados.
@@ -8,6 +10,7 @@ def lista_reportes(request):
     reportes = Reporte.objects.all()
     return render(request, 'reportes/lista_reportes.html', {'reportes': reportes})
 
+@login_required
 def detalle_reporte(request, idReporte):
     """
     Muestra los detalles de un reporte específico.
@@ -15,6 +18,7 @@ def detalle_reporte(request, idReporte):
     reporte = get_object_or_404(Reporte, id=idReporte)
     return render(request, 'reportes/detalle_reporte.html', {'reporte': reporte})
 
+@login_required
 def generar_reporte(request):
     """
     Genera un nuevo reporte basado en parámetros proporcionados por el usuario.

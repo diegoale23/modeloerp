@@ -11,7 +11,6 @@
             background-color: #343a40;
             color: white;
         }
-        /* Opcional: Footer fijo en la parte inferior */
         body {
             min-height: 100vh;
             display: flex;
@@ -34,18 +33,24 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
+                <!-- Menús de aplicaciones solo para usuarios autenticados -->
+                {% if user.is_authenticated %}
                 <ul class="navbar-nav me-auto">
+                    {% if user.is_superuser %}
                     <li class="nav-item"><a class="nav-link" href="{% url 'lista_usuarios' %}">Usuarios</a></li>
+                    {% endif %}
                     <li class="nav-item"><a class="nav-link" href="{% url 'lista_pedidos' %}">Pedidos</a></li>
                     <li class="nav-item"><a class="nav-link" href="{% url 'lista_proveedores' %}">Proveedores</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{% url 'lista_registros' %}">Finanzas</a></li>
                     <li class="nav-item"><a class="nav-link" href="{% url 'lista_productos' %}">Inventario</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'lista_registros' %}">Finanzas</a></li>
                     <li class="nav-item"><a class="nav-link" href="{% url 'lista_reportes' %}">Reportes</a></li>
                 </ul>
-                <!-- Login/Logout -->
+                {% endif %}
+                <!-- Login/Logout con nombre de usuario -->
                 <ul class="navbar-nav ms-auto">
                     {% if user.is_authenticated %}
-                    <li class="nav-item">
+                    <li class="nav-item d-flex align-items-center">
+                        <span class="nav-link text-white me-2">{{ user.username }}</span>
                         <form method="post" action="{% url 'logout' %}" class="d-inline">
                             {% csrf_token %}
                             <button type="submit" class="nav-link btn btn-link text-white p-0 border-0" style="background: none;">Cerrar Sesión</button>

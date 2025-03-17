@@ -24,7 +24,7 @@ urlpatterns = [
     path('gestion-financiera/', include('gestion_financiera.urls')),
     path('inventario/', include('inventario.urls')),
     path('reportes/', include('reportes.urls')),
-    path('productos/', include('productos.urls')),
+    #path('productos/', include('productos.urls')),
 
     # Ruta para login
     path('login/', auth_views.LoginView.as_view(

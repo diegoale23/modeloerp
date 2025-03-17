@@ -8,26 +8,47 @@
         <h3 class="card-title mb-0">Registrar Movimiento de Inventario</h3>
     </div>
     <div class="card-body">
+        {% if errores.general %}
+            <div class="alert alert-danger">{{ errores.general }}</div>
+        {% endif %}
         <form method="post">
             {% csrf_token %}
             <div class="mb-3">
                 <label for="producto" class="form-label">Producto</label>
-                <input type="text" name="producto" id="producto" class="form-control" required>
+                <select name="producto" id="producto" class="form-select {% if errores.producto %}is-invalid{% endif %}" required>
+                    <option value="">Selecciona un producto</option>
+                    {% for producto in productos %}
+                        <option value="{{ producto.idProducto }}"
+                            {% if valores.producto == producto.idProducto|stringformat:"s" %}selected{% endif %}>
+                            {{ producto.nombre }} (Stock: {{ producto.stock }})
+                        </option>
+                    {% endfor %}
+                </select>
+                {% if errores.producto %}
+                    <div class="invalid-feedback">{{ errores.producto }}</div>
+                {% endif %}
             </div>
             <div class="mb-3">
                 <label for="tipo" class="form-label">Tipo de Movimiento</label>
-                <select name="tipo" id="tipo" class="form-select">
-                    <option value="entrada">Entrada</option>
-                    <option value="salida">Salida</option>
+                <select name="tipo" id="tipo" class="form-select {% if errores.tipo %}is-invalid{% endif %}" required>
+                    <option value="entrada" {% if valores.tipo == "entrada" %}selected{% endif %}>Entrada</option>
+                    <option value="salida" {% if valores.tipo == "salida" %}selected{% endif %}>Salida</option>
                 </select>
+                {% if errores.tipo %}
+                    <div class="invalid-feedback">{{ errores.tipo }}</div>
+                {% endif %}
             </div>
             <div class="mb-3">
                 <label for="cantidad" class="form-label">Cantidad</label>
-                <input type="number" name="cantidad" id="cantidad" class="form-control" required>
+                <input type="number" name="cantidad" id="cantidad" class="form-control {% if errores.cantidad %}is-invalid{% endif %}"
+                    value="{{ valores.cantidad|default:'0' }}" min="1" required>
+                {% if errores.cantidad %}
+                    <div class="invalid-feedback">{{ errores.cantidad }}</div>
+                {% endif %}
             </div>
             <div class="mb-3">
                 <label for="descripcion" class="form-label">Descripción</label>
-                <textarea name="descripcion" id="descripcion" class="form-control"></textarea>
+                <textarea name="descripcion" id="descripcion" class="form-control">{{ valores.descripcion }}</textarea>
             </div>
             <div class="d-grid">
                 <button type="submit" class="btn btn-primary">Guardar Movimiento</button>

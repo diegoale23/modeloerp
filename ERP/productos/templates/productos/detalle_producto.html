@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block title %}Detalle de Producto{% endblock %}
+
+{% block content %}
+<div class="card mx-auto" style="max-width: 600px;">
+    <div class="card-header bg-primary text-white text-center">
+        <h3 class="card-title mb-0">Detalle del Producto</h3>
+    </div>
+    <div class="card-body">
+        <p><strong>Nombre:</strong> {{ producto.nombre }}</p>
+        <p><strong>Descripción:</strong> {{ producto.descripcion }}</p>
+        <p><strong>Precio:</strong> ${{ producto.precio }}</p>
+        <p><strong>Stock:</strong> {{ producto.stock }}</p>
+    </div>
+    <div class="card-footer text-center">
+        <a href="{% url 'lista_productos' %}" class="btn btn-secondary">Volver a la Lista</a>
+    </div>
+</div>
+{% endblock %}

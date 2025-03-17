@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}Detalle del Proveedor{% endblock %}
+
+{% block content %}
+<div class="card mx-auto" style="max-width: 600px;">
+    <div class="card-header bg-primary text-white text-center">
+        <h3 class="card-title mb-0">Detalle del Proveedor</h3>
+    </div>
+    <div class="card-body">
+        <p><strong>Nombre:</strong> {{ proveedor.nombre }}</p>
+        <p><strong>Contacto:</strong> {{ proveedor.contacto }}</p>
+        <p><strong>Dirección:</strong> {{ proveedor.direccion }}</p>
+        <p><strong>Teléfono:</strong> {{ proveedor.telefono }}</p>
+        <p><strong>Email:</strong> {{ proveedor.email }}</p>
+    </div>
+    <div class="card-footer text-center">
+        <a href="{% url 'lista_proveedores' %}" class="btn btn-secondary">Volver a la Lista</a>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}Detalle de Reporte{% endblock %}
+
+{% block content %}
+<div class="card mx-auto" style="max-width: 700px;">
+    <div class="card-header bg-primary text-white text-center">
+        <h3 class="card-title mb-0">Detalle del Reporte</h3>
+    </div>
+    <div class="card-body">
+        <p><strong>Tipo de Reporte:</strong> {{ reporte.tipo }}</p>
+        <p><strong>Generado por:</strong> {{ reporte.generado_por }}</p>
+        <p><strong>Rango de Fechas:</strong> {{ reporte.rango_inicio }} - {{ reporte.rango_fin }}</p>
+        <h5 class="mt-4">Contenido:</h5>
+        <pre class="bg-light p-3 border rounded">{{ reporte.contenido }}</pre>
+    </div>
+    <div class="card-footer text-center">
+        <a href="{% url 'lista_reportes' %}" class="btn btn-secondary">Volver a la Lista</a>
+    </div>
+</div>
+{% endblock %}

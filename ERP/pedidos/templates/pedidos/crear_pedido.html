@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title %}Crear Pedido{% endblock %}
+
+{% block content %}
+<div class="card mx-auto" style="max-width: 600px;">
+    <div class="card-header bg-primary text-white text-center">
+        <h3 class="card-title mb-0">Crear Pedido</h3>
+    </div>
+    <div class="card-body">
+        <form method="post">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="cliente" class="form-label">Cliente</label>
+                <input type="text" name="cliente" id="cliente" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label for="productos" class="form-label">Productos</label>
+                <textarea name="productos" id="productos" class="form-control" rows="5" required></textarea>
+            </div>
+            <div class="d-grid">
+                <button type="submit" class="btn btn-primary">Guardar Pedido</button>
+            </div>
+        </form>
+    </div>
+    <div class="card-footer text-center">
+        <a href="{% url 'lista_pedidos' %}" class="btn btn-secondary">Cancelar</a>
+    </div>
+</div>
+{% endblock %}

@@ -1,19 +1,38 @@
 from django.contrib import admin
 from django.urls import path, include
+from django.contrib.auth import views as auth_views
+from .views import index  # Importamos la vista index
 
 urlpatterns = [
     # Ruta para la administración de Django
     path('admin/', admin.site.urls),
 
-    # Rutas para las aplicaciones del ERP
-    path('usuarios/', include('usuarios.urls')),  # URLs de la app usuarios
-    path('pedidos/', include('pedidos.urls')),  # URLs de la app pedidos
-    path('proveedores/', include('proveedores.urls')),  # URLs de la app proveedores
-    path('gestion-financiera/', include('gestion_financiera.urls')),  # URLs de la app gestion_financiera
-    path('inventario/', include('inventario.urls')),  # URLs de la app inventario
-    path('reportes/', include('reportes.urls')),  # URLs de la app reportes
-    path('productos/', include('productos.urls')),# URLs de la app productos
+    # Ruta raíz muestra el login
+    path('', auth_views.LoginView.as_view(
+        template_name='login.html',
+        redirect_authenticated_user=True,
+        next_page='/index/'  # Redirige a /index/ tras login
+    ), name='home'),
 
-    # Rutas para login/logout
-    #path('auth/', include('django.contrib.auth.urls')),  # URLs predefinidas para autenticación
+    # Ruta para la página index
+    path('index/', index, name='index'),
+
+    # Rutas para las aplicaciones del ERP
+    path('usuarios/', include('usuarios.urls')),
+    path('pedidos/', include('pedidos.urls')),
+    path('proveedores/', include('proveedores.urls')),
+    path('gestion-financiera/', include('gestion_financiera.urls')),
+    path('inventario/', include('inventario.urls')),
+    path('reportes/', include('reportes.urls')),
+    path('productos/', include('productos.urls')),
+
+    # Ruta para login
+    path('login/', auth_views.LoginView.as_view(
+        template_name='login.html',
+        redirect_authenticated_user=True,
+        next_page='/index/'  # Redirige a /index/ tras login
+    ), name='login'),
+
+    # Ruta para logout
+    path('logout/', auth_views.LogoutView.as_view(next_page='/login'), name='logout'),
 ]

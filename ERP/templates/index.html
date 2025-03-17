@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    ERP - Página Principal
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-12">
+            <h1 class="text-center mb-4">Bienvenido al Sistema ERP</h1>
+            <p class="lead text-center">
+                Gestiona eficientemente tu negocio con nuestro sistema integrado.
+            </p>
+        </div>
+    </div>
+
+    {% if user.is_authenticated %}
+        <div class="row mt-4">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Usuarios</h5>
+                        <p class="card-text">Administra los usuarios del sistema.</p>
+                        <a href="{% url 'lista_usuarios' %}" class="btn btn-primary">Ir a Usuarios</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Inventario</h5>
+                        <p class="card-text">Controla tus productos y existencias.</p>
+                        <a href="{% url 'lista_productos' %}" class="btn btn-primary">Ir a Inventario</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Pedidos</h5>
+                        <p class="card-text">Gestiona los pedidos de tus clientes.</p>
+                        <a href="{% url 'lista_pedidos' %}" class="btn btn-primary">Ir a Pedidos</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-4">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Proveedores</h5>
+                        <p class="card-text">Mantén el control de tus proveedores.</p>
+                        <a href="{% url 'lista_proveedores' %}" class="btn btn-primary">Ir a Proveedores</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Finanzas</h5>
+                        <p class="card-text">Revisa tus registros financieros.</p>
+                        <a href="{% url 'lista_registros' %}" class="btn btn-primary">Ir a Finanzas</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Reportes</h5>
+                        <p class="card-text">Genera reportes detallados.</p>
+                        <a href="{% url 'lista_reportes' %}" class="btn btn-primary">Ir a Reportes</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% else %}
+        <div class="row mt-4">
+            <div class="col-12 text-center">
+                <p>Por favor, inicia sesión para acceder a las funcionalidades del sistema.</p>
+                <a href="{% url 'login' %}" class="btn btn-primary">Iniciar Sesión</a>
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}

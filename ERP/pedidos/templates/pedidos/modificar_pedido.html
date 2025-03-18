@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+
+{% block title %}Modificar Pedido #{{ pedido.idPedido }}{% endblock %}
+
+{% block content %}
+<div class="card mx-auto" style="max-width: 800px;">
+    <div class="card-header bg-primary text-white text-center">
+        <h3 class="card-title mb-0">Modificar Pedido #{{ pedido.idPedido }}</h3>
+    </div>
+    <div class="card-body">
+        {% if errores %}
+        <div class="alert alert-danger">
+            <ul class="mb-0">
+                {% for key, value in errores.items %}
+                <li>{{ value }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+
+        <form method="post">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="cliente" class="form-label">Cliente</label>
+                <select name="cliente" id="cliente" class="form-control">
+                    {% for cliente in clientes %}
+                    <option value="{{ cliente.idUsuario }}"
+                            {% if cliente.idUsuario == pedido.cliente.idUsuario %}selected{% endif %}>
+                        {{ cliente.nombre }} {{ cliente.apellido }}
+                    </option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Productos</label>
+                <div class="row">
+                    {% for producto in productos %}
+                    <div class="col-md-6 mb-2">
+                        <div class="form-check d-flex align-items-center">
+                            <input type="checkbox" name="productos" value="{{ producto.idProducto }}"
+                                   class="form-check-input me-2"
+                                   id="prod_{{ producto.idProducto }}"
+                                   {% for detalle in pedido.detallepedido_set.all %}{% if detalle.producto.idProducto == producto.idProducto %}checked{% endif %}{% endfor %}>
+                            <label class="form-check-label flex-grow-1" for="prod_{{ producto.idProducto }}">
+                                {{ producto.nombre }} (Stock: {{ producto.stock }}) - ${{ producto.precio }}
+                            </label>
+                            <input type="number" name="cantidades" min="0" class="form-control w-25 ms-2"
+                                   value="{% for detalle in pedido.detallepedido_set.all %}{% if detalle.producto.idProducto == producto.idProducto %}{{ detalle.cantidad }}{% else %}0{% endif %}{% endfor %}">
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div class="d-grid">
+                <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+            </div>
+        </form>
+    </div>
+    <div class="card-footer text-center">
+        <a href="{% url 'lista_pedidos' %}" class="btn btn-secondary">Cancelar</a>
+    </div>
+</div>
+{% endblock %}

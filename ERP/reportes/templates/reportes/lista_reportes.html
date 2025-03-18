@@ -3,6 +3,16 @@
 {% block title %}Lista de Reportes{% endblock %}
 
 {% block content %}
+{% if messages %}
+<div class="container mt-3">
+    {% for message in messages %}
+    <div class="alert {% if message.tags == 'success' %}alert-success{% else %}alert-danger{% endif %}" role="alert">
+        {{ message }}
+    </div>
+    {% endfor %}
+</div>
+{% endif %}
+
 <div class="d-flex justify-content-between align-items-center mb-4">
     <h1 class="h3">Lista de Reportes</h1>
     <a href="{% url 'generar_reporte' %}" class="btn btn-primary">Generar Nuevo Reporte</a>
@@ -20,11 +30,11 @@
     <tbody>
         {% for reporte in reportes %}
         <tr>
-            <td>{{ reporte.id }}</td>
-            <td>{{ reporte.tipo }}</td>
+            <td>{{ reporte.idReporte }}</td>
+            <td>{{ reporte.tipo|capfirst }}</td>
             <td>{{ reporte.fecha_generacion|date:"d M Y H:i" }}</td>
             <td>
-                <a href="{% url 'detalle_reporte' reporte.id %}" class="btn btn-info btn-sm">Ver Detalles</a>
+                <a href="{% url 'detalle_reporte' reporte.idReporte %}" class="btn btn-info btn-sm">Ver Detalles</a>
             </td>
         </tr>
         {% empty %}

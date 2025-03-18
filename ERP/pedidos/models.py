@@ -7,7 +7,7 @@ class Pedido(models.Model):
     fecha = models.DateTimeField(auto_now_add=True)
     estado = models.CharField(max_length=20, choices=[('pendiente', 'Pendiente'), ('procesado', 'Procesado')], default='pendiente')
     total = models.DecimalField(max_digits=10, decimal_places=2)
-    cliente = models.ForeignKey(Usuario, on_delete=models.CASCADE)
+    cliente = models.ForeignKey(Usuario, on_delete=models.CASCADE, related_name='pedidos')  # Añadimos related_name
     productos = models.ManyToManyField(Producto, through='DetallePedido')
 
     def __str__(self):

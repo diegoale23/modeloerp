@@ -58,7 +58,7 @@ def modificar_usuario(request, idUsuario):
     return render(request, 'usuarios/modificar_usuario.html', {'usuario': usuario})
 
 @login_required
-@user_passes_test(es_superusuario, login_url='/usuarios/')  # Solo superusuarios pueden eliminar
+#@user_passes_test(es_superusuario, login_url='/usuarios/')  # Solo superusuarios pueden eliminar
 def eliminar_usuario(request, idUsuario):
     usuario = get_object_or_404(Usuario, idUsuario=idUsuario)
     if request.method == 'POST':

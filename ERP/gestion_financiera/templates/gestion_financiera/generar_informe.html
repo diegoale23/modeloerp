@@ -8,20 +8,30 @@
         <h3 class="card-title mb-0">Generar Informe Financiero</h3>
     </div>
     <div class="card-body">
+        {% if messages %}
+        <div class="alert alert-danger">
+            {% for message in messages %}
+            <p class="mb-0">{{ message }}</p>
+            {% endfor %}
+        </div>
+        {% endif %}
         <form method="post">
             {% csrf_token %}
             <div class="mb-3">
                 <label for="rango_inicio" class="form-label">Fecha Inicio</label>
-                <input type="date" name="rango_inicio" id="rango_inicio" class="form-control" required>
+                <input type="date" name="rango_inicio" id="rango_inicio" class="form-control" value="{{ rango_inicio|default_if_none:'' }}" required>
             </div>
             <div class="mb-3">
                 <label for="rango_fin" class="form-label">Fecha Fin</label>
-                <input type="date" name="rango_fin" id="rango_fin" class="form-control" required>
+                <input type="date" name="rango_fin" id="rango_fin" class="form-control" value="{{ rango_fin|default_if_none:'' }}" required>
             </div>
             <div class="d-grid">
                 <button type="submit" class="btn btn-primary">Generar Informe</button>
             </div>
         </form>
+    </div>
+    <div class="card-footer text-center">
+        <a href="{% url 'lista_registros' %}" class="btn btn-secondary">Cancelar</a>
     </div>
 </div>
 {% endblock %}

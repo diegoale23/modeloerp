@@ -163,7 +163,7 @@ def editar_producto(request, idProducto):
     return render(request, 'inventario/editar_producto.html', {'producto': producto})
 
 @login_required
-@user_passes_test(es_superusuario, login_url='/inventario/')
+#@user_passes_test(es_superusuario, login_url='/inventario/')
 def eliminar_producto(request, idProducto):
     producto = get_object_or_404(Producto, idProducto=idProducto)
     if request.method == 'POST':

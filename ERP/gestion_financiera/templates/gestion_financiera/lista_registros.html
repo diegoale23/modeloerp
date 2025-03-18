@@ -3,9 +3,22 @@
 {% block title %}Registros Financieros{% endblock %}
 
 {% block content %}
+{% if messages %}
+<div class="container mt-3">
+    {% for message in messages %}
+    <div class="alert {% if message.tags == 'success' %}alert-success{% else %}alert-danger{% endif %}" role="alert">
+        {{ message }}
+    </div>
+    {% endfor %}
+</div>
+{% endif %}
+
 <div class="d-flex justify-content-between align-items-center mb-4">
     <h1 class="h3">Registros Financieros</h1>
-    <a href="{% url 'generar_informe' %}" class="btn btn-primary">Generar Informe</a>
+    <div>
+        <a href="{% url 'crear_registro' %}" class="btn btn-success me-2">Nuevo Registro</a>
+        <a href="{% url 'generar_informe' %}" class="btn btn-primary">Generar Informe</a>
+    </div>
 </div>
 
 <table class="table table-hover">
@@ -21,12 +34,17 @@
     <tbody>
         {% for registro in registros %}
         <tr>
-            <td>{{ registro.id }}</td>
+            <td>{{ registro.idRegistro }}</td>
             <td>{{ registro.tipo|capfirst }}</td>
             <td>${{ registro.monto }}</td>
             <td>{{ registro.fecha|date:"d/m/Y" }}</td>
             <td>
-                <a href="{% url 'detalle_registro' registro.id %}" class="btn btn-info btn-sm">Ver Detalles</a>
+                <a href="{% url 'detalle_registro' registro.idRegistro %}" class="btn btn-info btn-sm">Ver Detalles</a>
+                <a href="{% url 'editar_registro' registro.idRegistro %}" class="btn btn-warning btn-sm">Editar</a>
+                <form action="{% url 'eliminar_registro' registro.idRegistro %}" method="post" style="display:inline;">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('¿Estás seguro de eliminar este registro?');">Eliminar</button>
+                </form>
             </td>
         </tr>
         {% empty %}

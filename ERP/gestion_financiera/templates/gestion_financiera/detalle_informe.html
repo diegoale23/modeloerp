@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}Informe Financiero{% endblock %}
+
+{% block content %}
+<div class="card mx-auto" style="max-width: 800px;">
+    <div class="card-header bg-primary text-white text-center">
+        <h3 class="card-title mb-0">Informe Financiero</h3>
+    </div>
+    <div class="card-body">
+        <p><strong>Fecha de Generación:</strong> {{ informe.fecha_generacion|date:"d/m/Y H:i" }}</p>
+        <p><strong>Rango:</strong> {{ informe.rango_inicio|date:"d/m/Y" }} - {{ informe.rango_fin|date:"d/m/Y" }}</p>
+        <p><strong>Generado por:</strong> {{ informe.generado_por.username|default:"Usuario no disponible" }}</p>
+        <h5>Resumen Financiero</h5>
+        <pre>{{ informe.contenido }}</pre>
+    </div>
+    <div class="card-footer text-center">
+        <a href="{% url 'lista_registros' %}" class="btn btn-secondary">Volver a la Lista</a>
+    </div>
+</div>
+{% endblock %}

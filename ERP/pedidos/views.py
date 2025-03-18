@@ -119,7 +119,7 @@ def modificar_pedido(request, idPedido):
     })
 
 @login_required
-@user_passes_test(es_superusuario, login_url='/pedidos/')
+#@user_passes_test(es_superusuario, login_url='/pedidos/')
 def eliminar_pedido(request, idPedido):
     pedido = get_object_or_404(Pedido, idPedido=idPedido)
     if request.method == 'POST':

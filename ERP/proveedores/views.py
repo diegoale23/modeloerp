@@ -55,7 +55,7 @@ def modificar_proveedor(request, idProveedor):
     return render(request, 'proveedores/modificar_proveedor.html', {'proveedor': proveedor})
 
 @login_required
-@user_passes_test(es_superusuario, login_url='/proveedores/')
+#@user_passes_test(es_superusuario, login_url='/proveedores/')
 def eliminar_proveedor(request, idProveedor):
     proveedor = get_object_or_404(Proveedor, idProveedor=idProveedor)
     if request.method == 'POST':

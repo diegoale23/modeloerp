@@ -18,37 +18,65 @@ class RegistroFinanciero(models.Model):
     def __str__(self):
         return f"{self.tipo.capitalize()} de {self.monto} el {self.fecha}"
 
+# gestion_financiera/models.py
 class InformeFinanciero(models.Model):
     idInforme = models.AutoField(primary_key=True)
     fecha_generacion = models.DateTimeField(auto_now_add=True)
     rango_inicio = models.DateField()
     rango_fin = models.DateField()
     contenido = models.TextField()
-    generado_por = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)  # Usuario autenticado que genera el informe
+    generado_por = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
 
-    def generar_informe(self):
+    def generar_informe(self, tipo='totales'):
         registros = RegistroFinanciero.objects.filter(fecha__range=(self.rango_inicio, self.rango_fin))
-        ingresos = registros.filter(tipo="ingreso").aggregate(models.Sum('monto'))['monto__sum'] or 0
-        gastos = registros.filter(tipo="gasto").aggregate(models.Sum('monto'))['monto__sum'] or 0
-        balance = ingresos - gastos
-
-        detalle_ingresos = "\n".join([f"{r.fecha}: ${r.monto} - {r.descripcion or 'Sin descripción'}" for r in registros.filter(tipo="ingreso")])
-        detalle_gastos = "\n".join([f"{r.fecha}: ${r.monto} - {r.descripcion or 'Sin descripción'}" for r in registros.filter(tipo="gasto")])
-
-        self.contenido = (
-            f"Resumen Financiero\n"
-            f"==================\n"
-            f"Período: {self.rango_inicio} a {self.rango_fin}\n"
-            f"Ingresos Totales: ${ingresos}\n"
-            f"Gastos Totales: ${gastos}\n"
-            f"Balance: ${balance}\n\n"
-            f"Detalle de Ingresos\n"
-            f"------------------\n"
-            f"{detalle_ingresos or 'No hay ingresos'}\n\n"
-            f"Detalle de Gastos\n"
-            f"-----------------\n"
-            f"{detalle_gastos or 'No hay gastos'}"
-        )
+        
+        if tipo == 'ingreso':
+            registros = registros.filter(tipo="ingreso")
+            ingresos = registros.aggregate(models.Sum('monto'))['monto__sum'] or 0
+            detalle = "\n".join([f"{r.fecha}: ${r.monto} - {r.descripcion or 'Sin descripción'}" for r in registros])
+            self.contenido = (
+                f"Informe de Ingresos\n"
+                f"==================\n"
+                f"Período: {self.rango_inicio} a {self.rango_fin}\n"
+                f"Ingresos Totales: ${ingresos}\n\n"
+                f"Detalle de Ingresos\n"
+                f"------------------\n"
+                f"{detalle or 'No hay ingresos'}"
+            )
+        elif tipo == 'gasto':
+            registros = registros.filter(tipo="gasto")
+            gastos = registros.aggregate(models.Sum('monto'))['monto__sum'] or 0
+            detalle = "\n".join([f"{r.fecha}: ${r.monto} - {r.descripcion or 'Sin descripción'}" for r in registros])
+            self.contenido = (
+                f"Informe de Egresos\n"
+                f"==================\n"
+                f"Período: {self.rango_inicio} a {self.rango_fin}\n"
+                f"Gastos Totales: ${gastos}\n\n"
+                f"Detalle de Gastos\n"
+                f"-----------------\n"
+                f"{detalle or 'No hay gastos'}"
+            )
+        else:  # tipo == 'totales'
+            ingresos = registros.filter(tipo="ingreso").aggregate(models.Sum('monto'))['monto__sum'] or 0
+            gastos = registros.filter(tipo="gasto").aggregate(models.Sum('monto'))['monto__sum'] or 0
+            balance = ingresos - gastos
+            detalle_ingresos = "\n".join([f"{r.fecha}: ${r.monto} - {r.descripcion or 'Sin descripción'}" for r in registros.filter(tipo="ingreso")])
+            detalle_gastos = "\n".join([f"{r.fecha}: ${r.monto} - {r.descripcion or 'Sin descripción'}" for r in registros.filter(tipo="gasto")])
+            self.contenido = (
+                f"Resumen Financiero\n"
+                f"==================\n"
+                f"Período: {self.rango_inicio} a {self.rango_fin}\n"
+                f"Ingresos Totales: ${ingresos}\n"
+                f"Gastos Totales: ${gastos}\n"
+                f"Balance: ${balance}\n\n"
+                f"Detalle de Ingresos\n"
+                f"------------------\n"
+                f"{detalle_ingresos or 'No hay ingresos'}\n\n"
+                f"Detalle de Gastos\n"
+                f"-----------------\n"
+                f"{detalle_gastos or 'No hay gastos'}"
+            )
+        
         self.save()
 
     def __str__(self):

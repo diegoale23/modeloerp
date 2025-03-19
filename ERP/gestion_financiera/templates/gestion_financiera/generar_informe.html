@@ -18,6 +18,14 @@
         <form method="post">
             {% csrf_token %}
             <div class="mb-3">
+                <label for="tipo" class="form-label">Tipo de Informe</label>
+                <select name="tipo" id="tipo" class="form-control" required>
+                    <option value="totales" {% if tipo == 'totales' %}selected{% endif %}>Totales</option>
+                    <option value="ingreso" {% if tipo == 'ingreso' %}selected{% endif %}>Ingresos</option>
+                    <option value="gasto" {% if tipo == 'gasto' %}selected{% endif %}>Egresos</option>
+                </select>
+            </div>
+            <div class="mb-3">
                 <label for="rango_inicio" class="form-label">Fecha Inicio</label>
                 <input type="date" name="rango_inicio" id="rango_inicio" class="form-control" value="{{ rango_inicio|default_if_none:'' }}" required>
             </div>

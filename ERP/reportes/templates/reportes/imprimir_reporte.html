@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% block title %}Imprimir Reporte #{{ reporte.idReporte }}{% endblock %}
+
+{% block content %}
+<div class="container mt-3 printable">
+    <h1 class="text-center">Detalle del Reporte #{{ reporte.idReporte }}</h1>
+    <div class="card mx-auto" style="max-width: 800px;">
+        <div class="card-body">
+            <p><strong>Tipo de Reporte:</strong> {{ reporte.tipo|capfirst }}</p>
+            <p><strong>Generado por:</strong> {{ reporte.generado_por.username|default:"Usuario no disponible" }}</p>
+            <p><strong>Fecha de Generación:</strong> {{ reporte.fecha_generacion|date:"d M Y H:i" }}</p>
+            <p><strong>Rango de Fechas:</strong> {{ reporte.parametros.rango_inicio }} - {{ reporte.parametros.rango_fin }}</p>
+            <h5 class="mt-4">Contenido:</h5>
+            <pre class="bg-light p-3 border rounded">{{ reporte.contenido }}</pre>
+        </div>
+        <div class="card-footer text-center no-print">
+            <a href="{% url 'lista_reportes' %}" class="btn btn-secondary">Volver a la Lista</a>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Asegurarse de que la página esté completamente cargada antes de imprimir
+    document.addEventListener("DOMContentLoaded", function() {
+        window.print();
+    });
+</script>
+
+<style>
+    @media print {
+        /* Ocultar elementos no deseados */
+        .navbar, footer, .no-print {
+            display: none !important;
+        }
+        /* Ajustar el contenedor imprimible */
+        .printable {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            max-width: none;
+        }
+        .card {
+            border: none;
+            box-shadow: none;
+            width: 100%;
+            max-width: none;
+        }
+        h1 {
+            font-size: 24px;
+        }
+        p, pre {
+            font-size: 14px;
+        }
+        body {
+            min-height: 0;
+        }
+    }
+</style>
+{% endblock %}

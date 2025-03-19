@@ -35,6 +35,16 @@
             <td>{{ reporte.fecha_generacion|date:"d M Y H:i" }}</td>
             <td>
                 <a href="{% url 'detalle_reporte' reporte.idReporte %}" class="btn btn-info btn-sm">Ver Detalles</a>
+                <a href="{% url 'imprimir_reporte' reporte.idReporte %}" class="btn btn-success btn-sm" target="_blank">Imprimir</a>
+                <div class="dropdown d-inline-block">
+                    <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" id="exportDropdown_{{ reporte.idReporte }}" data-bs-toggle="dropdown" aria-expanded="false">
+                        Exportar
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="exportDropdown_{{ reporte.idReporte }}">
+                        <li><a class="dropdown-item" href="{% url 'exportar_reporte_pdf' reporte.idReporte %}">PDF</a></li>
+                        <li><a class="dropdown-item" href="{% url 'exportar_reporte_excel' reporte.idReporte %}">Excel</a></li>
+                    </ul>
+                </div>
             </td>
         </tr>
         {% empty %}

@@ -38,6 +38,7 @@ def modificar_pedido(request, idPedido):
 
     if request.method == 'POST':
         cliente_id = request.POST.get('cliente')
+        estado = request.POST.get('estado')  # Nuevo: obtenemos el estado
         productos_seleccionados = request.POST.getlist('productos')
         cantidades = request.POST.getlist('cantidades')
         errores = {}
@@ -47,6 +48,10 @@ def modificar_pedido(request, idPedido):
         else:
             cliente = get_object_or_404(Usuario, idUsuario=cliente_id)
 
+        if estado not in ['pendiente', 'procesado']:
+            errores['estado'] = 'Estado inválido.'
+
+        # Lógica existente para productos y cantidades
         detalles_validos = []
         total = 0
         for prod_id, cantidad in zip(productos_seleccionados, cantidades):
@@ -56,7 +61,7 @@ def modificar_pedido(request, idPedido):
                     continue
                 producto = get_object_or_404(Producto, idProducto=prod_id)
                 if producto.stock < cantidad:
-                    errores[f'producto_{prod_id}'] = f'Stock insuficiente para {producto.nombre} (disponible: {producto.stock}).'
+                    errores[f'producto_{prod_id}'] = f'Stock insuficiente para {producto.nombre}.'
                 else:
                     subtotal = producto.precio * cantidad
                     total += subtotal
@@ -73,26 +78,21 @@ def modificar_pedido(request, idPedido):
 
         if errores:
             return render(request, 'pedidos/modificar_pedido.html', {
-                'pedido': pedido,
-                'clientes': clientes,
-                'productos': productos,
-                'errores': errores,
-                'valores': request.POST
+                'pedido': pedido, 'clientes': clientes, 'productos': productos,
+                'errores': errores, 'valores': request.POST
             })
 
         try:
             with transaction.atomic():
-                # Revertir stock de los detalles antiguos
                 for detalle in pedido.detallepedido_set.all():
-                    detalle.producto.actualizar_stock(detalle.cantidad)  # Devolver stock
+                    detalle.producto.actualizar_stock(detalle.cantidad)
                     detalle.delete()
 
-                # Actualizar pedido
                 pedido.cliente = cliente
+                pedido.estado = estado  # Nuevo: actualizamos el estado
                 pedido.total = total
                 pedido.save()
 
-                # Crear nuevos detalles y actualizar stock
                 for detalle in detalles_validos:
                     DetallePedido.objects.create(
                         pedido=pedido,
@@ -105,28 +105,27 @@ def modificar_pedido(request, idPedido):
                 return redirect('lista_pedidos')
         except Exception as e:
             return render(request, 'pedidos/modificar_pedido.html', {
-                'pedido': pedido,
-                'clientes': clientes,
-                'productos': productos,
+                'pedido': pedido, 'clientes': clientes, 'productos': productos,
                 'errores': {'general': f'Error al modificar el pedido: {str(e)}'},
                 'valores': request.POST
             })
 
     return render(request, 'pedidos/modificar_pedido.html', {
-        'pedido': pedido,
-        'clientes': clientes,
-        'productos': productos
+        'pedido': pedido, 'clientes': clientes, 'productos': productos
     })
 
 @login_required
-#@user_passes_test(es_superusuario, login_url='/pedidos/')
 def eliminar_pedido(request, idPedido):
     pedido = get_object_or_404(Pedido, idPedido=idPedido)
+    if pedido.estado == 'procesado':
+        messages.error(request, f"No puedes eliminar el pedido #{idPedido} porque ya está procesado.")
+        return redirect('lista_pedidos')
+    
     if request.method == 'POST':
         try:
             with transaction.atomic():
                 for detalle in pedido.detallepedido_set.all():
-                    detalle.producto.actualizar_stock(detalle.cantidad)
+                    detalle.producto.actualizar_stock(detalle.cantidad)  # Devolver stock
                 pedido.delete()
             messages.success(request, f"Pedido #{idPedido} eliminado exitosamente.")
         except Exception as e:

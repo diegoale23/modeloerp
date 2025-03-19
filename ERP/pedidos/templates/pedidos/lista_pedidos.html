@@ -25,6 +25,7 @@
             <th>Cliente</th>
             <th>Fecha</th>
             <th>Total</th>
+            <th>Estado</th> <!-- Nueva columna -->
             <th>Acciones</th>
         </tr>
     </thead>
@@ -35,18 +36,23 @@
             <td>{{ pedido.cliente.nombre }} {{ pedido.cliente.apellido }}</td>
             <td>{{ pedido.fecha|date:"d/m/Y" }}</td>
             <td>${{ pedido.total }}</td>
+            <td>{{ pedido.get_estado_display }}</td> <!-- Mostrar estado legible -->
             <td>
                 <a href="{% url 'detalle_pedido' pedido.idPedido %}" class="btn btn-info btn-sm">Ver Detalles</a>
                 <a href="{% url 'modificar_pedido' pedido.idPedido %}" class="btn btn-warning btn-sm">Modificar</a>
                 <form action="{% url 'eliminar_pedido' pedido.idPedido %}" method="post" style="display:inline;">
                     {% csrf_token %}
+                    {% if pedido.estado == 'procesado' %}
+                    <button type="button" class="btn btn-danger btn-sm" disabled title="No se puede eliminar un pedido procesado">Eliminar</button>
+                    {% else %}
                     <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('¿Estás seguro de eliminar este pedido?');">Eliminar</button>
+                    {% endif %}
                 </form>
             </td>
         </tr>
         {% empty %}
         <tr>
-            <td colspan="5" class="text-center">No hay pedidos disponibles.</td>
+            <td colspan="6" class="text-center">No hay pedidos disponibles.</td> <!-- Ajustado colspan por nueva columna -->
         </tr>
         {% endfor %}
     </tbody>

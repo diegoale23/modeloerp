@@ -33,6 +33,14 @@
             </div>
 
             <div class="mb-3">
+                <label for="estado" class="form-label">Estado</label>
+                <select name="estado" id="estado" class="form-control">
+                    <option value="pendiente" {% if pedido.estado == 'pendiente' %}selected{% endif %}>Pendiente</option>
+                    <option value="procesado" {% if pedido.estado == 'procesado' %}selected{% endif %}>Procesado</option>
+                </select>
+            </div>
+
+            <div class="mb-3">
                 <label class="form-label">Productos</label>
                 <div class="row">
                     {% for producto in productos %}

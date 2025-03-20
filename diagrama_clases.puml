@@ -1,0 +1,114 @@
+@startuml
+' Clases
+class Usuario {
+  -idUsuario: int <<PK>>
+  -nombre: String
+  -apellido: String
+  -rol: String
+  -email: String <<unique>>
+  +__str__(): String
+}
+
+class User {
+  -id: int <<PK>>
+  -username: String
+  -password: String
+  -email: String
+}
+
+class RegistroFinanciero {
+  -idRegistro: int <<PK>>
+  -tipo: String
+  -monto: Decimal
+  -descripcion: String
+  -fecha: Date
+  -usuario: Usuario
+  +__str__(): String
+}
+
+class InformeFinanciero {
+  -idInforme: int <<PK>>
+  -fecha_generacion: DateTime
+  -rango_inicio: Date
+  -rango_fin: Date
+  -contenido: String
+  -generado_por: User
+  +generar_informe(tipo: String): void
+  +__str__(): String
+}
+
+class Producto {
+  -idProducto: int <<PK>>
+  -nombre: String
+  -descripcion: String
+  -precio: Decimal
+  -stock: int
+  -fecha_creacion: DateTime
+  +actualizar_stock(cantidad: int): void
+  +consultar_disponibilidad(): boolean
+  +__str__(): String
+}
+
+class MovimientoInventario {
+  -idMovimiento: int <<PK>>
+  -producto: Producto
+  -tipo: String
+  -cantidad: int
+  -fecha: DateTime
+  -descripcion: String
+  +aplicar_movimiento(): void
+  +__str__(): String
+}
+
+class Pedido {
+  -idPedido: int <<PK>>
+  -fecha: DateTime
+  -estado: String
+  -total: Decimal
+  -cliente: Usuario
+  +__str__(): String
+}
+
+class DetallePedido {
+  -id: int <<PK>>
+  -pedido: Pedido
+  -producto: Producto
+  -cantidad: int
+  -subtotal: Decimal
+  +__str__(): String
+}
+
+class Proveedor {
+  -idProveedor: int <<PK>>
+  -nombre: String
+  -contacto: String
+  -direccion: String
+  -telefono: String
+  -email: String <<unique>>
+  -listaProductos: String
+  +registrar_proveedor(): void
+  +gestionar_ordenes(): void
+  +__str__(): String
+}
+
+class Reporte {
+  -idReporte: int <<PK>>
+  -tipo: String
+  -fecha_generacion: DateTime
+  -parametros: JSON
+  -contenido: String
+  -generado_por: User
+  +generar(tipo: String, usuario: User, **parametros): void
+  +__str__(): String
+}
+
+' Relaciones
+Usuario "1" -- "0..*" RegistroFinanciero
+User "1" -- "0..*" InformeFinanciero
+Usuario "1" -- "0..*" Pedido
+Producto "1" -- "0..*" MovimientoInventario
+Pedido "1" -- "0..*" DetallePedido
+Producto "0..*" -- "0..*" Pedido : through DetallePedido
+User "1" -- "0..*" Reporte
+
+@enduml

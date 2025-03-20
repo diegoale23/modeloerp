@@ -1,0 +1,108 @@
+@startuml
+' Entidades
+entity "Usuario" {
+  *idUsuario : AutoField <<PK>>
+  --
+  nombre : CharField
+  apellido : CharField
+  rol : CharField (choices)
+  email : EmailField <<unique>>
+}
+
+entity "User" {
+  *id : AutoField <<PK>>
+  --
+  username : CharField
+  password : CharField
+  email : EmailField
+}
+
+entity "RegistroFinanciero" {
+  *idRegistro : AutoField <<PK>>
+  --
+  tipo : CharField (choices)
+  monto : DecimalField
+  descripcion : TextField
+  fecha : DateField
+  usuario : ForeignKey <<FK>>
+}
+
+entity "InformeFinanciero" {
+  *idInforme : AutoField <<PK>>
+  --
+  fecha_generacion : DateTimeField
+  rango_inicio : DateField
+  rango_fin : DateField
+  contenido : TextField
+  generado_por : ForeignKey <<FK>>
+}
+
+entity "Producto" {
+  *idProducto : AutoField <<PK>>
+  --
+  nombre : CharField
+  descripcion : TextField
+  precio : DecimalField
+  stock : IntegerField
+  fecha_creacion : DateTimeField
+}
+
+entity "MovimientoInventario" {
+  *idMovimiento : AutoField <<PK>>
+  --
+  producto : ForeignKey <<FK>>
+  tipo : CharField (choices)
+  cantidad : IntegerField
+  fecha : DateTimeField
+  descripcion : TextField
+}
+
+entity "Pedido" {
+  *idPedido : AutoField <<PK>>
+  --
+  fecha : DateTimeField
+  estado : CharField (choices)
+  total : DecimalField
+  cliente : ForeignKey <<FK>>
+}
+
+entity "DetallePedido" {
+  *id : AutoField <<PK>>
+  --
+  pedido : ForeignKey <<FK>>
+  producto : ForeignKey <<FK>>
+  cantidad : IntegerField
+  subtotal : DecimalField
+}
+
+entity "Proveedor" {
+  *idProveedor : AutoField <<PK>>
+  --
+  nombre : CharField
+  contacto : CharField
+  direccion : TextField
+  telefono : CharField
+  email : EmailField <<unique>>
+  listaProductos : TextField
+}
+
+entity "Reporte" {
+  *idReporte : AutoField <<PK>>
+  --
+  tipo : CharField (choices)
+  fecha_generacion : DateTimeField
+  parametros : JSONField
+  contenido : TextField
+  generado_por : ForeignKey <<FK>>
+}
+
+' Relaciones
+Usuario ||--o{ RegistroFinanciero
+User ||--o{ InformeFinanciero
+Usuario ||--o{ Pedido
+Producto ||--o{ MovimientoInventario
+Producto ||--o{ DetallePedido
+Pedido ||--o{ DetallePedido
+User ||--o{ Reporte
+
+@enduml

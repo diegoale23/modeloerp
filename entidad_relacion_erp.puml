@@ -7,6 +7,8 @@ entity "Usuario" {
   apellido : CharField
   rol : CharField (choices)
   email : EmailField <<unique>>
+  username : CharField
+  password : CharField
 }
 
 entity "User" {
@@ -83,7 +85,13 @@ entity "Proveedor" {
   direccion : TextField
   telefono : CharField
   email : EmailField <<unique>>
-  listaProductos : TextField
+}
+
+entity "Proveedor_Producto" {
+  *id : AutoField <<PK>>
+  --
+  proveedor : ForeignKey <<FK>>
+  producto : ForeignKey <<FK>>
 }
 
 entity "Reporte" {
@@ -103,6 +111,8 @@ Usuario ||--o{ Pedido
 Producto ||--o{ MovimientoInventario
 Producto ||--o{ DetallePedido
 Pedido ||--o{ DetallePedido
+Proveedor ||--o{ Proveedor_Producto
+Producto ||--o{ Proveedor_Producto
 User ||--o{ Reporte
 
 @enduml

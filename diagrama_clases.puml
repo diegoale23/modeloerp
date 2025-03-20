@@ -6,6 +6,8 @@ class Usuario {
   -apellido: String
   -rol: String
   -email: String <<unique>>
+  -username: String
+  -password: String
   +__str__(): String
 }
 
@@ -66,6 +68,7 @@ class Pedido {
   -estado: String
   -total: Decimal
   -cliente: Usuario
+  -productos: Producto [*]
   +__str__(): String
 }
 
@@ -85,7 +88,7 @@ class Proveedor {
   -direccion: String
   -telefono: String
   -email: String <<unique>>
-  -listaProductos: String
+  -productos: Producto [*]
   +registrar_proveedor(): void
   +gestionar_ordenes(): void
   +__str__(): String
@@ -109,6 +112,7 @@ Usuario "1" -- "0..*" Pedido
 Producto "1" -- "0..*" MovimientoInventario
 Pedido "1" -- "0..*" DetallePedido
 Producto "0..*" -- "0..*" Pedido : through DetallePedido
+Proveedor "0..*" -- "0..*" Producto
 User "1" -- "0..*" Reporte
 
 @enduml

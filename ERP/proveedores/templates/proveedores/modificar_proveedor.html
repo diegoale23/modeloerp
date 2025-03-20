@@ -1,15 +1,18 @@
 {% extends "base.html" %}
 
-{% block title %}Modificar Proveedor{% endblock %}
+{% block title %}Modificar Proveedor - ERP{% endblock %}
 
 {% block content %}
-<div class="card mx-auto" style="max-width: 600px;">
+<div class="card mx-auto my-4" style="max-width: 600px;">
     <div class="card-header bg-primary text-white text-center">
         <h3 class="card-title mb-0">Modificar Proveedor</h3>
     </div>
     <div class="card-body">
         {% if error %}
-            <div class="alert alert-danger">{{ error }}</div>
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                {{ error }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
         {% endif %}
         <form method="post">
             {% csrf_token %}
@@ -32,6 +35,18 @@
             <div class="mb-3">
                 <label for="email" class="form-label">Email</label>
                 <input type="email" name="email" id="email" class="form-control" value="{{ proveedor.email }}" required>
+            </div>
+            <div class="mb-3">
+                <label for="productos" class="form-label">Productos</label>
+                <select name="productos" id="productos" class="form-control" multiple>
+                    {% for producto in productos %}
+                        <option value="{{ producto.idProducto }}"
+                            {% if producto in proveedor.productos.all %}selected{% endif %}>
+                            {{ producto.nombre }} (Stock: {{ producto.stock }})
+                        </option>
+                    {% endfor %}
+                </select>
+                <small class="form-text text-muted">Mantén presionado Ctrl (o Cmd en Mac) para seleccionar múltiples productos.</small>
             </div>
             <div class="d-grid">
                 <button type="submit" class="btn btn-primary">Guardar Cambios</button>

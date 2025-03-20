@@ -1,34 +1,49 @@
 {% extends "base.html" %}
 
-{% block title %}Registrar Proveedor{% endblock %}
+{% block title %}Registrar Proveedor - ERP{% endblock %}
 
 {% block content %}
-<div class="card mx-auto" style="max-width: 600px;">
+<div class="card mx-auto my-4" style="max-width: 600px;">
     <div class="card-header bg-primary text-white text-center">
         <h3 class="card-title mb-0">Registrar Proveedor</h3>
     </div>
     <div class="card-body">
+        {% if error %}
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                {{ error }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        {% endif %}
         <form method="post">
             {% csrf_token %}
             <div class="mb-3">
                 <label for="nombre" class="form-label">Nombre</label>
-                <input type="text" name="nombre" id="nombre" class="form-control" required>
+                <input type="text" name="nombre" id="nombre" class="form-control" value="{{ valores.nombre }}" required>
             </div>
             <div class="mb-3">
                 <label for="contacto" class="form-label">Contacto</label>
-                <input type="text" name="contacto" id="contacto" class="form-control" required>
+                <input type="text" name="contacto" id="contacto" class="form-control" value="{{ valores.contacto }}" required>
             </div>
             <div class="mb-3">
                 <label for="direccion" class="form-label">Dirección</label>
-                <textarea name="direccion" id="direccion" class="form-control" rows="3" required></textarea>
+                <textarea name="direccion" id="direccion" class="form-control" rows="3" required>{{ valores.direccion }}</textarea>
             </div>
             <div class="mb-3">
                 <label for="telefono" class="form-label">Teléfono</label>
-                <input type="text" name="telefono" id="telefono" class="form-control" required>
+                <input type="text" name="telefono" id="telefono" class="form-control" value="{{ valores.telefono }}" required>
             </div>
             <div class="mb-3">
                 <label for="email" class="form-label">Email</label>
-                <input type="email" name="email" id="email" class="form-control" required>
+                <input type="email" name="email" id="email" class="form-control" value="{{ valores.email }}" required>
+            </div>
+            <div class="mb-3">
+                <label for="productos" class="form-label">Productos</label>
+                <select name="productos" id="productos" class="form-control" multiple>
+                    {% for producto in productos %}
+                        <option value="{{ producto.idProducto }}">{{ producto.nombre }} (Stock: {{ producto.stock }})</option>
+                    {% endfor %}
+                </select>
+                <small class="form-text text-muted">Mantén presionado Ctrl (o Cmd en Mac) para seleccionar múltiples productos.</small>
             </div>
             <div class="d-grid">
                 <button type="submit" class="btn btn-primary">Guardar Proveedor</button>

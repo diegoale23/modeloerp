@@ -1,6 +1,9 @@
+# proveedores/views.py
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required, user_passes_test
 from .models import Proveedor
+from django.contrib import messages
+from inventario.models import Producto  # Importamos Producto para asociarlo
 
 # Solo superusuarios
 def es_superusuario(user):
@@ -18,6 +21,7 @@ def detalle_proveedor(request, idProveedor):
 
 @login_required
 def crear_proveedor(request):
+    productos = Producto.objects.all()
     if request.method == 'POST':
         try:
             proveedor = Proveedor(
@@ -28,16 +32,17 @@ def crear_proveedor(request):
                 email=request.POST.get('email'),
             )
             proveedor.save()
+            proveedor.productos.set(request.POST.getlist('productos'))
+            messages.success(request, "Proveedor creado exitosamente.")
             return redirect('lista_proveedores')
         except Exception as e:
-            return render(request, 'proveedores/crear_proveedor.html', {
-                'error': f'Error al crear proveedor: {str(e)}'
-            })
-    return render(request, 'proveedores/crear_proveedor.html')
+            messages.error(request, f"Error al crear proveedor: {str(e)}")
+    return render(request, 'proveedores/crear_proveedor.html', {'productos': productos})
 
 @login_required
 def modificar_proveedor(request, idProveedor):
     proveedor = get_object_or_404(Proveedor, idProveedor=idProveedor)
+    productos = Producto.objects.all()  # Obtenemos todos los productos disponibles
     if request.method == 'POST':
         try:
             proveedor.nombre = request.POST.get('nombre')
@@ -46,13 +51,20 @@ def modificar_proveedor(request, idProveedor):
             proveedor.telefono = request.POST.get('telefono')
             proveedor.email = request.POST.get('email')
             proveedor.save()
+            productos_seleccionados = request.POST.getlist('productos')  # Obtenemos los productos seleccionados
+            proveedor.productos.set(productos_seleccionados)  # Actualizamos los productos asociados
             return redirect('lista_proveedores')
         except Exception as e:
             return render(request, 'proveedores/modificar_proveedor.html', {
                 'proveedor': proveedor,
-                'error': f'Error al modificar proveedor: {str(e)}'
+                'productos': productos,
+                'error': f'Error al modificar proveedor: {str(e)}',
+                'valores': request.POST
             })
-    return render(request, 'proveedores/modificar_proveedor.html', {'proveedor': proveedor})
+    return render(request, 'proveedores/modificar_proveedor.html', {
+        'proveedor': proveedor,
+        'productos': productos
+    })
 
 @login_required
 #@user_passes_test(es_superusuario, login_url='/proveedores/')

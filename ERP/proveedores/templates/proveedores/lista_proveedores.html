@@ -1,39 +1,49 @@
 {% extends "base.html" %}
 
-{% block title %}Lista de Proveedores{% endblock %}
+{% block title %}Lista de Proveedores - ERP{% endblock %}
 
 {% block content %}
-<div class="d-flex justify-content-between align-items-center mb-4">
-    <h1 class="h3">Lista de Proveedores</h1>
-    <a href="{% url 'crear_proveedor' %}" class="btn btn-primary">Registrar Nuevo Proveedor</a>
-</div>
+<div class="my-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="h3">Lista de Proveedores</h1>
+        <a href="{% url 'crear_proveedor' %}" class="btn btn-primary">Registrar Nuevo Proveedor</a>
+    </div>
 
-<table class="table table-hover">
-    <thead class="table-dark">
-        <tr>
-            <th>#</th>
-            <th>Nombre</th>
-            <th>Contacto</th>
-            <th>Acciones</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for proveedor in proveedores %}
-        <tr>
-            <td>{{ proveedor.idProveedor }}</td> <!-- Cambiado de id a idProveedor -->
-            <td>{{ proveedor.nombre }}</td>
-            <td>{{ proveedor.contacto }}</td>
-            <td>
-                <a href="{% url 'detalle_proveedor' proveedor.idProveedor %}" class="btn btn-info btn-sm">Ver detalles</a>
-                <a href="{% url 'modificar_proveedor' proveedor.idProveedor %}" class="btn btn-warning btn-sm">Modificar</a>
-                <a href="{% url 'eliminar_proveedor' proveedor.idProveedor %}" class="btn btn-danger btn-sm">Eliminar</a>
-            </td>
-        </tr>
-        {% empty %}
-        <tr>
-            <td colspan="4" class="text-center">No hay proveedores disponibles.</td>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
+    <table class="table table-hover">
+        <thead class="table-dark">
+            <tr>
+                <th>#</th>
+                <th>Nombre</th>
+                <th>Contacto</th>
+                <th>Productos</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for proveedor in proveedores %}
+            <tr>
+                <td>{{ proveedor.idProveedor }}</td>
+                <td>{{ proveedor.nombre }}</td>
+                <td>{{ proveedor.contacto }}</td>
+                <td>
+                    {% for producto in proveedor.productos.all %}
+                        {{ producto.nombre }}{% if not forloop.last %}, {% endif %}
+                    {% empty %}
+                        Ninguno
+                    {% endfor %}
+                </td>
+                <td>
+                    <a href="{% url 'detalle_proveedor' proveedor.idProveedor %}" class="btn btn-info btn-sm">Ver detalles</a>
+                    <a href="{% url 'modificar_proveedor' proveedor.idProveedor %}" class="btn btn-warning btn-sm">Modificar</a>
+                    <a href="{% url 'eliminar_proveedor' proveedor.idProveedor %}" class="btn btn-danger btn-sm">Eliminar</a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="5" class="text-center">No hay proveedores disponibles.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
 {% endblock %}

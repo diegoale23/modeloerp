@@ -1,9 +1,9 @@
 {% extends "base.html" %}
 
-{% block title %}Detalle del Proveedor{% endblock %}
+{% block title %}Detalle del Proveedor - ERP{% endblock %}
 
 {% block content %}
-<div class="card mx-auto" style="max-width: 600px;">
+<div class="card mx-auto my-4" style="max-width: 600px;">
     <div class="card-header bg-primary text-white text-center">
         <h3 class="card-title mb-0">Detalle del Proveedor</h3>
     </div>
@@ -13,9 +13,19 @@
         <p><strong>Dirección:</strong> {{ proveedor.direccion }}</p>
         <p><strong>Teléfono:</strong> {{ proveedor.telefono }}</p>
         <p><strong>Email:</strong> {{ proveedor.email }}</p>
+        <p><strong>Productos:</strong></p>
+        <ul>
+            {% for producto in proveedor.productos.all %}
+                <li>{{ producto.nombre }} (Stock: {{ producto.stock }})</li>
+            {% empty %}
+                <li>No hay productos asociados</li>
+            {% endfor %}
+        </ul>
     </div>
     <div class="card-footer text-center">
         <a href="{% url 'lista_proveedores' %}" class="btn btn-secondary">Volver a la Lista</a>
+        <a href="{% url 'modificar_proveedor' proveedor.idProveedor %}" class="btn btn-warning">Modificar</a>
+        <a href="{% url 'eliminar_proveedor' proveedor.idProveedor %}" class="btn btn-danger">Eliminar</a>
     </div>
 </div>
 {% endblock %}

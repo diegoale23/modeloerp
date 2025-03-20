@@ -1,57 +1,60 @@
 {% extends "base.html" %}
 
-{% block title %}Lista de Reportes{% endblock %}
+{% block title %}Lista de Reportes - ERP{% endblock %}
 
 {% block content %}
-{% if messages %}
-<div class="container mt-3">
-    {% for message in messages %}
-    <div class="alert {% if message.tags == 'success' %}alert-success{% else %}alert-danger{% endif %}" role="alert">
-        {{ message }}
-    </div>
-    {% endfor %}
-</div>
-{% endif %}
-
-<div class="d-flex justify-content-between align-items-center mb-4">
-    <h1 class="h3">Lista de Reportes</h1>
-    <a href="{% url 'generar_reporte' %}" class="btn btn-primary">Generar Nuevo Reporte</a>
-</div>
-
-<table class="table table-hover">
-    <thead class="table-dark">
-        <tr>
-            <th>#</th>
-            <th>Tipo</th>
-            <th>Fecha Generación</th>
-            <th>Acciones</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for reporte in reportes %}
-        <tr>
-            <td>{{ reporte.idReporte }}</td>
-            <td>{{ reporte.tipo|capfirst }}</td>
-            <td>{{ reporte.fecha_generacion|date:"d M Y H:i" }}</td>
-            <td>
-                <a href="{% url 'detalle_reporte' reporte.idReporte %}" class="btn btn-info btn-sm">Ver Detalles</a>
-                <a href="{% url 'imprimir_reporte' reporte.idReporte %}" class="btn btn-success btn-sm" target="_blank">Imprimir</a>
-                <div class="dropdown d-inline-block">
-                    <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" id="exportDropdown_{{ reporte.idReporte }}" data-bs-toggle="dropdown" aria-expanded="false">
-                        Exportar
-                    </button>
-                    <ul class="dropdown-menu" aria-labelledby="exportDropdown_{{ reporte.idReporte }}">
-                        <li><a class="dropdown-item" href="{% url 'exportar_reporte_pdf' reporte.idReporte %}">PDF</a></li>
-                        <li><a class="dropdown-item" href="{% url 'exportar_reporte_excel' reporte.idReporte %}">Excel</a></li>
-                    </ul>
-                </div>
-            </td>
-        </tr>
-        {% empty %}
-        <tr>
-            <td colspan="4" class="text-center">No hay reportes disponibles.</td>
-        </tr>
+<div class="my-4">
+    {% if messages %}
+    <div class="container mt-3">
+        {% for message in messages %}
+        <div class="alert {% if message.tags == 'success' %}alert-success{% else %}alert-danger{% endif %} alert-dismissible fade show" role="alert">
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
         {% endfor %}
-    </tbody>
-</table>
+    </div>
+    {% endif %}
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="h3">Lista de Reportes</h1>
+        <a href="{% url 'generar_reporte' %}" class="btn btn-primary">Generar Nuevo Reporte</a>
+    </div>
+
+    <table class="table table-hover">
+        <thead class="table-dark">
+            <tr>
+                <th>#</th>
+                <th>Tipo</th>
+                <th>Fecha Generación</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for reporte in reportes %}
+            <tr>
+                <td>{{ reporte.idReporte }}</td>
+                <td>{{ reporte.tipo|capfirst }}</td>
+                <td>{{ reporte.fecha_generacion|date:"d M Y H:i" }}</td>
+                <td>
+                    <a href="{% url 'detalle_reporte' reporte.idReporte %}" class="btn btn-info btn-sm">Ver Detalles</a>
+                    <a href="{% url 'imprimir_reporte' reporte.idReporte %}" class="btn btn-success btn-sm" target="_blank">Imprimir</a>
+                    <div class="dropdown d-inline-block">
+                        <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" id="exportDropdown_{{ reporte.idReporte }}" data-bs-toggle="dropdown" aria-expanded="false">
+                            Exportar
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="exportDropdown_{{ reporte.idReporte }}">
+                            <li><a class="dropdown-item" href="{% url 'exportar_reporte_pdf' reporte.idReporte %}">PDF</a></li>
+                            <li><a class="dropdown-item" href="{% url 'exportar_reporte_excel' reporte.idReporte %}">Excel</a></li>
+                        </ul>
+                    </div>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="4" class="text-center">No hay reportes disponibles.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
 {% endblock %}

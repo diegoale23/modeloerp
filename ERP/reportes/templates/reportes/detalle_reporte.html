@@ -1,9 +1,9 @@
 {% extends "base.html" %}
 
-{% block title %}Detalle de Reporte{% endblock %}
+{% block title %}Detalle de Reporte - ERP{% endblock %}
 
 {% block content %}
-<div class="card mx-auto" style="max-width: 800px;">
+<div class="card mx-auto my-4" style="max-width: 800px;">
     <div class="card-header bg-primary text-white text-center">
         <h3 class="card-title mb-0">Detalle del Reporte #{{ reporte.idReporte }}</h3>
     </div>
@@ -11,12 +11,17 @@
         <p><strong>Tipo de Reporte:</strong> {{ reporte.tipo|capfirst }}</p>
         <p><strong>Generado por:</strong> {{ reporte.generado_por.username|default:"Usuario no disponible" }}</p>
         <p><strong>Fecha de Generación:</strong> {{ reporte.fecha_generacion|date:"d M Y H:i" }}</p>
+        {% if reporte.tipo != "proveedores" %}
         <p><strong>Rango de Fechas:</strong> {{ reporte.parametros.rango_inicio }} - {{ reporte.parametros.rango_fin }}</p>
+        {% endif %}
         <h5 class="mt-4">Contenido:</h5>
-        <pre class="bg-light p-3 border rounded">{{ reporte.contenido }}</pre>
+        <pre class="bg-light p-3 border rounded" style="white-space: pre-wrap;">{{ reporte.contenido }}</pre>
     </div>
     <div class="card-footer text-center">
         <a href="{% url 'lista_reportes' %}" class="btn btn-secondary">Volver a la Lista</a>
+        <a href="{% url 'exportar_reporte_pdf' reporte.idReporte %}" class="btn btn-primary">Exportar a PDF</a>
+        <a href="{% url 'exportar_reporte_excel' reporte.idReporte %}" class="btn btn-success">Exportar a Excel</a>
+        <a href="{% url 'imprimir_reporte' reporte.idReporte %}" class="btn btn-secondary">Imprimir</a>
     </div>
 </div>
 {% endblock %}

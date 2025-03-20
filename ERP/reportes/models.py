@@ -3,13 +3,19 @@ from django.db import models
 from django.contrib.auth.models import User
 from gestion_financiera.models import RegistroFinanciero
 from inventario.models import Producto, MovimientoInventario
-from pedidos.models import Pedido  # Correcto, referencia al modelo de pedidos
+from pedidos.models import Pedido
+from proveedores.models import Proveedor  # Importamos Proveedor
 from django.core.serializers.json import DjangoJSONEncoder
 from datetime import datetime, timedelta
 
 class Reporte(models.Model):
     idReporte = models.AutoField(primary_key=True)
-    tipo = models.CharField(max_length=50, choices=[('financiero', 'Financiero'), ('inventario', 'Inventario'), ('pedidos', 'Pedidos')])
+    tipo = models.CharField(max_length=50, choices=[
+        ('financiero', 'Financiero'),
+        ('inventario', 'Inventario'),
+        ('pedidos', 'Pedidos'),
+        ('proveedores', 'Proveedores')  # Nuevo tipo de reporte
+    ])
     fecha_generacion = models.DateTimeField(auto_now_add=True)
     parametros = models.JSONField(encoder=DjangoJSONEncoder)
     contenido = models.TextField()
@@ -25,6 +31,8 @@ class Reporte(models.Model):
             self._generar_reporte_inventario()
         elif tipo == 'pedidos':
             self._generar_reporte_pedidos()
+        elif tipo == 'proveedores':
+            self._generar_reporte_proveedores()  # Nuevo método
         else:
             raise ValueError("Tipo de reporte no soportado.")
         self.save()
@@ -72,19 +80,13 @@ class Reporte(models.Model):
             f"{detalle_movimientos or 'No hay movimientos en este período'}"
         )
 
-  # reportes/models.py (solo el método _generar_reporte_pedidos)
     def _generar_reporte_pedidos(self):
         rango_inicio = self.parametros.get('rango_inicio')
         rango_fin = self.parametros.get('rango_fin')
-        # Convertir las fechas a datetime para incluir todo el día
         inicio = datetime.strptime(rango_inicio, '%Y-%m-%d')
-        fin = datetime.strptime(rango_fin, '%Y-%m-%d') + timedelta(days=1) - timedelta(seconds=1)  # Hasta el final del día
+        fin = datetime.strptime(rango_fin, '%Y-%m-%d') + timedelta(days=1) - timedelta(seconds=1)
         pedidos = Pedido.objects.filter(fecha__gte=inicio, fecha__lte=fin)
         total_pedidos = pedidos.count()
-        print(f"Rango ajustado: {inicio} - {fin}")
-        print(f"Pedidos encontrados: {total_pedidos}")
-        for p in pedidos:
-            print(f"Pedido #{p.idPedido}: Fecha {p.fecha}, Cliente {p.cliente}, Total {p.total}")
         contenido = "\n".join([f"Pedido #{p.idPedido}: Cliente {p.cliente.nombre} {p.cliente.apellido}, Total ${p.total}" for p in pedidos])
         self.contenido = (
             f"Reporte de Pedidos\n"
@@ -95,6 +97,24 @@ class Reporte(models.Model):
             f"-------\n"
             f"{contenido or 'No hay pedidos'}"
         )
-    
+
+    def _generar_reporte_proveedores(self):
+        # No usamos rango de fechas porque no hay un campo temporal en Proveedor
+        proveedores = Proveedor.objects.all()
+        total_proveedores = proveedores.count()
+        detalle_proveedores = "\n".join([
+            f"{p.nombre}: Contacto {p.contacto}, Email {p.email}, Productos: {', '.join([prod.nombre for prod in p.productos.all()])}"
+            if p.productos.exists() else f"{p.nombre}: Contacto {p.contacto}, Email {p.email}, Productos: Ninguno"
+            for p in proveedores
+        ])
+        self.contenido = (
+            f"Reporte de Proveedores\n"
+            f"=====================\n"
+            f"Total de Proveedores: {total_proveedores}\n\n"
+            f"Detalle de Proveedores\n"
+            f"---------------------\n"
+            f"{detalle_proveedores or 'No hay proveedores'}"
+        )
+
     def __str__(self):
         return f"Reporte {self.tipo.capitalize()} generado el {self.fecha_generacion.strftime('%Y-%m-%d')}"

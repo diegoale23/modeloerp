@@ -85,25 +85,29 @@ El modelo `Reporte` permite generar reportes financieros, de inventario, pedidos
 
 ## Diagramas UML
 
+![Diagrama de Clases](out/diagrama_clases/diagrama_clases.png)
+
+![Diagrama Entidad-Relación](out/diagrama_clases/entidad_relacion_erp.png)
+
 ### Usuarios
 
-![Diagrama de Usuarios](out/usuarios/diagrama_usuarios.png)
+![Diagramas de Caso de Uso](out/ERP/usuarios/use_case_diagram/use_case_diagram.png)
 
 ### Inventario
 
-![Diagrama de Inventario](out/inventario/diagrama_inventario.png)
+![Diagramas de Caso de Uso](out/ERP/inventario/use_case_diagram/use_case_diagram.png)
 
 ### Gestión Financiera
 
-![Diagrama de Gestión Financiera](out/gestion_financiera/diagrama_gestion_financiera.png)
+![Diagramas de Caso de Uso](out/ERP/gestion_financiera/use_case_diagram/use_case_diagram.png)
 
 ### Proveedores
 
-![Diagrama de Proveedores](out/proveedores/diagrama_proveedores.png)
+![Diagramas de Caso de Uso](out/ERP/proveedores/use_case_diagram/use_case_diagram.png)
 
 ### Reportes
 
-![Diagrama de Reportes](out/reportes/diagrama_reportes.png)
+![Diagramas de Caso de Uso](out/ERP/reportes/use_case_diagram/use_case_diagram.png)
 
 ---
 

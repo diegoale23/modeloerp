@@ -1,0 +1,8 @@
+@startuml
+state "Pedido" as PD {
+    [*] --> Pendiente
+    Pendiente --> Procesado : Procesar pedido
+    Pendiente --> Cancelado : Cancelar pedido
+    Procesado --> Completado : Completar pedido
+}
+@enduml

@@ -1,0 +1,13 @@
+@startuml
+state "Registro Financiero" as RF {
+    [*] --> Creado
+    Creado --> Editado : Editar registro
+    Creado --> Eliminado : Eliminar registro
+    Editado --> Eliminado : Eliminar registro
+    Editado --> Creado : Guardar cambios
+}
+state "Informe Financiero" as IF {
+    [*] --> Generado
+    Generado --> Consultado : Consultar informe
+}
+@enduml

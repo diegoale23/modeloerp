@@ -1,0 +1,24 @@
+@startuml
+left to right direction
+skinparam packageStyle rectangle
+
+actor "Usuario Autenticado" as Usuario
+actor "Administrador" as Admin
+
+package "Gestión de Inventario" {
+    usecase "Listar Productos" as UC1
+    usecase "Ver Detalle de Producto" as UC2
+    usecase "Crear Producto" as UC3
+    usecase "Editar Producto" as UC4
+    usecase "Eliminar Producto" as UC5
+    usecase "Registrar Movimiento de Inventario" as UC6
+}
+
+Usuario --> UC1
+Usuario --> UC2
+
+Admin --> UC3
+Admin --> UC4
+Admin --> UC5
+Admin --> UC6
+@enduml

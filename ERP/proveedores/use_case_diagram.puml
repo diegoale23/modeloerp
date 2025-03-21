@@ -1,0 +1,22 @@
+@startuml
+left to right direction
+skinparam packageStyle rectangle
+
+actor "Usuario Autenticado" as Usuario
+actor "Administrador" as Admin
+
+package "Gestión de Proveedores" {
+    usecase "Listar Proveedores" as UC1
+    usecase "Ver Detalle de Proveedor" as UC2
+    usecase "Crear Proveedor" as UC3
+    usecase "Modificar Proveedor" as UC4
+    usecase "Eliminar Proveedor" as UC5
+}
+
+Usuario --> UC1
+Usuario --> UC2
+
+Admin --> UC3
+Admin --> UC4
+Admin --> UC5
+@enduml

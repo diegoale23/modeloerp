@@ -1,0 +1,9 @@
+@startuml
+state "Usuario" as US {
+    [*] --> Registrado
+    Registrado --> Actualizado : Editar usuario
+    Registrado --> Eliminado : Eliminar usuario
+    Actualizado --> Eliminado : Eliminar usuario
+    Actualizado --> Registrado : Guardar cambios
+}
+@enduml

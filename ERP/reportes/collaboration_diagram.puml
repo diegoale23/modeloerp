@@ -1,0 +1,35 @@
+@startuml
+skinparam objectBorderColor Black
+skinparam objectFontColor Black
+skinparam objectBackgroundColor LightGray
+
+object Usuario {
+    Solicita listar reportes
+    Solicita generar reporte
+}
+
+object VistaListaReportes {
+    Consulta reportes
+    Muestra lista de reportes
+}
+
+object ModeloReporte {
+    Retorna reportes
+    Genera reporte
+}
+
+object VistaGenerarReporte {
+    Procesa generación de reporte
+    Muestra confirmación
+}
+
+Usuario --> VistaListaReportes : Solicita lista
+VistaListaReportes --> ModeloReporte : Consulta
+ModeloReporte --> VistaListaReportes : Retorna datos
+VistaListaReportes --> Usuario : Muestra datos
+
+Usuario --> VistaGenerarReporte : Solicita generar reporte
+VistaGenerarReporte --> ModeloReporte : Genera reporte
+ModeloReporte --> VistaGenerarReporte : Confirma generación
+VistaGenerarReporte --> Usuario : Muestra confirmación
+@enduml

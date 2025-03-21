@@ -1,0 +1,82 @@
+@startuml
+skinparam objectBorderColor Black
+skinparam objectFontColor Black
+skinparam objectBackgroundColor LightGray
+
+object "Usuario: Juan Pérez" as Usuario1 {
+    idUsuario: 1
+    nombre: Juan
+    apellido: Pérez
+    rol: cliente
+    email: juan.perez@example.com
+}
+
+object "Producto: Laptop" as Producto1 {
+    idProducto: 1
+    nombre: Laptop
+    descripcion: Laptop de alta gama
+    precio: $1500.00
+    stock: 10
+}
+
+object "Producto: Mouse" as Producto2 {
+    idProducto: 2
+    nombre: Mouse
+    descripcion: Mouse inalámbrico
+    precio: $25.00
+    stock: 50
+}
+
+object "Pedido: #1001" as Pedido1 {
+    idPedido: 1001
+    fecha: 2023-10-01
+    estado: pendiente
+    total: $1550.00
+}
+
+object "DetallePedido: Laptop" as DetallePedido1 {
+    cantidad: 1
+    subtotal: $1500.00
+}
+
+object "DetallePedido: Mouse" as DetallePedido2 {
+    cantidad: 2
+    subtotal: $50.00
+}
+
+object "MovimientoInventario: Entrada Laptop" as Movimiento1 {
+    tipo: entrada
+    cantidad: 5
+    descripcion: Reabastecimiento
+}
+
+object "MovimientoInventario: Salida Mouse" as Movimiento2 {
+    tipo: salida
+    cantidad: 2
+    descripcion: Venta
+}
+
+object "Proveedor: Tech Supplies" as Proveedor1 {
+    idProveedor: 1
+    nombre: Tech Supplies
+    contacto: Carlos López
+    email: contacto@techsupplies.com
+}
+
+object "Reporte: Inventario" as Reporte1 {
+    idReporte: 1
+    tipo: inventario
+    fecha_generacion: 2023-10-02
+    generado_por: admin
+}
+
+Usuario1 --> Pedido1 : cliente
+Pedido1 --> DetallePedido1 : detalles
+Pedido1 --> DetallePedido2 : detalles
+DetallePedido1 --> Producto1 : producto
+DetallePedido2 --> Producto2 : producto
+Producto1 --> Movimiento1 : movimientos
+Producto2 --> Movimiento2 : movimientos
+Producto1 --> Proveedor1 : proveedores
+Producto2 --> Proveedor1 : proveedores
+@enduml

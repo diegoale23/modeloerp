@@ -1,0 +1,21 @@
+@startuml
+actor Usuario
+actor Administrador as Admin
+participant "Vista: lista_pedidos" as ListaPedidos
+participant "Modelo: Pedido" as ModeloPedido
+participant "Vista: crear_pedido" as CrearPedido
+participant "Modelo: DetallePedido" as ModeloDetalle
+
+Usuario -> ListaPedidos : Solicitar lista de pedidos
+ListaPedidos -> ModeloPedido : Consultar pedidos
+ModeloPedido --> ListaPedidos : Retorna pedidos
+ListaPedidos --> Usuario : Muestra pedidos
+
+Usuario -> CrearPedido : Solicitar creación de pedido
+CrearPedido -> ModeloDetalle : Procesar detalles del pedido
+ModeloDetalle --> CrearPedido : Confirma creación
+CrearPedido --> Usuario : Muestra confirmación
+
+Admin -> ModeloPedido : Modificar o eliminar pedido
+ModeloPedido --> Admin : Confirma operación
+@enduml

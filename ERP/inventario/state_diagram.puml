@@ -1,0 +1,13 @@
+@startuml
+state "Producto" as P {
+    [*] --> Registrado
+    Registrado --> Actualizado : Editar producto
+    Registrado --> Eliminado : Eliminar producto
+    Actualizado --> Eliminado : Eliminar producto
+    Actualizado --> Registrado : Guardar cambios
+}
+state "Movimiento de Inventario" as MI {
+    [*] --> Registrado
+    Registrado --> Aplicado : Aplicar movimiento
+}
+@enduml

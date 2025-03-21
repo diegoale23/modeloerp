@@ -1,0 +1,9 @@
+@startuml
+package "Gestión de Usuarios" {
+    [Vista: lista_usuarios] --> [Modelo: Usuario]
+    [Vista: crear_usuario] --> [Modelo: Usuario]
+    [Vista: modificar_usuario] --> [Modelo: Usuario]
+    [Vista: eliminar_usuario] --> [Modelo: Usuario]
+    [Modelo: Usuario] --> [Base de Datos]
+}
+@enduml

@@ -1,0 +1,9 @@
+@startuml
+state "Proveedor" as PR {
+    [*] --> Registrado
+    Registrado --> Actualizado : Editar proveedor
+    Registrado --> Eliminado : Eliminar proveedor
+    Actualizado --> Eliminado : Eliminar proveedor
+    Actualizado --> Registrado : Guardar cambios
+}
+@enduml

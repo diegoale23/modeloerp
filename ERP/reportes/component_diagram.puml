@@ -1,0 +1,7 @@
+@startuml
+package "Gestión de Reportes" {
+    [Vista: lista_reportes] --> [Modelo: Reporte]
+    [Vista: generar_reporte] --> [Modelo: Reporte]
+    [Modelo: Reporte] --> [Base de Datos]
+}
+@enduml

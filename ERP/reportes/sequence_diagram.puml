@@ -1,0 +1,20 @@
+@startuml
+actor Usuario
+actor Administrador as Admin
+participant "Vista: lista_reportes" as ListaReportes
+participant "Modelo: Reporte" as ModeloReporte
+participant "Vista: generar_reporte" as GenerarReporte
+
+Usuario -> ListaReportes : Solicitar lista de reportes
+ListaReportes -> ModeloReporte : Consultar reportes
+ModeloReporte --> ListaReportes : Retorna reportes
+ListaReportes --> Usuario : Muestra reportes
+
+Usuario -> GenerarReporte : Solicitar generación de reporte
+GenerarReporte -> ModeloReporte : Procesar generación
+ModeloReporte --> GenerarReporte : Confirma generación
+GenerarReporte --> Usuario : Muestra confirmación
+
+Admin -> ModeloReporte : Exportar o imprimir reporte
+ModeloReporte --> Admin : Confirma operación
+@enduml

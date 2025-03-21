@@ -1,0 +1,8 @@
+@startuml
+package "Gestión de Pedidos" {
+    [Vista: lista_pedidos] --> [Modelo: Pedido]
+    [Vista: crear_pedido] --> [Modelo: DetallePedido]
+    [Modelo: Pedido] --> [Base de Datos]
+    [Modelo: DetallePedido] --> [Base de Datos]
+}
+@enduml

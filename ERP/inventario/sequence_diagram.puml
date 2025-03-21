@@ -1,0 +1,21 @@
+@startuml
+actor Usuario
+actor Administrador as Admin
+participant "Vista: lista_productos" as ListaProductos
+participant "Modelo: Producto" as ModeloProducto
+participant "Vista: registrar_movimiento" as RegistrarMovimiento
+participant "Modelo: MovimientoInventario" as ModeloMovimiento
+
+Usuario -> ListaProductos : Solicitar lista de productos
+ListaProductos -> ModeloProducto : Consultar productos
+ModeloProducto --> ListaProductos : Retorna productos
+ListaProductos --> Usuario : Muestra productos
+
+Usuario -> RegistrarMovimiento : Solicitar registro de movimiento
+RegistrarMovimiento -> ModeloMovimiento : Procesar movimiento
+ModeloMovimiento --> RegistrarMovimiento : Confirma registro
+RegistrarMovimiento --> Usuario : Muestra confirmación
+
+Admin -> ModeloProducto : Crear, editar o eliminar producto
+ModeloProducto --> Admin : Confirma operación
+@enduml

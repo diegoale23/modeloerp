@@ -1,0 +1,39 @@
+@startuml
+skinparam objectBorderColor Black
+skinparam objectFontColor Black
+skinparam objectBackgroundColor LightGray
+
+object Usuario {
+    Solicita listar productos
+    Solicita registrar movimiento de inventario
+}
+
+object VistaListaProductos {
+    Consulta productos
+    Muestra lista de productos
+}
+
+object ModeloProducto {
+    Retorna productos
+}
+
+object VistaRegistrarMovimiento {
+    Registra movimiento de inventario
+    Muestra confirmación
+}
+
+object ModeloMovimientoInventario {
+    Procesa movimiento
+    Actualiza stock
+}
+
+Usuario --> VistaListaProductos : Solicita lista
+VistaListaProductos --> ModeloProducto : Consulta
+ModeloProducto --> VistaListaProductos : Retorna datos
+VistaListaProductos --> Usuario : Muestra datos
+
+Usuario --> VistaRegistrarMovimiento : Solicita registrar movimiento
+VistaRegistrarMovimiento --> ModeloMovimientoInventario : Procesa movimiento
+ModeloMovimientoInventario --> VistaRegistrarMovimiento : Confirma registro
+VistaRegistrarMovimiento --> Usuario : Muestra confirmación
+@enduml

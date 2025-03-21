@@ -1,0 +1,20 @@
+@startuml
+actor Usuario
+actor Administrador as Admin
+participant "Vista: lista_proveedores" as ListaProveedores
+participant "Modelo: Proveedor" as ModeloProveedor
+participant "Vista: crear_proveedor" as CrearProveedor
+
+Usuario -> ListaProveedores : Solicitar lista de proveedores
+ListaProveedores -> ModeloProveedor : Consultar proveedores
+ModeloProveedor --> ListaProveedores : Retorna proveedores
+ListaProveedores --> Usuario : Muestra proveedores
+
+Usuario -> CrearProveedor : Solicitar creación de proveedor
+CrearProveedor -> ModeloProveedor : Registrar proveedor
+ModeloProveedor --> CrearProveedor : Confirma registro
+CrearProveedor --> Usuario : Muestra confirmación
+
+Admin -> ModeloProveedor : Modificar o eliminar proveedor
+ModeloProveedor --> Admin : Confirma operación
+@enduml

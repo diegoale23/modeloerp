@@ -1,0 +1,51 @@
+@startuml
+skinparam objectBorderColor Black
+skinparam objectFontColor Black
+skinparam objectBackgroundColor LightGray
+
+object Usuario {
+    Solicita lista de usuarios
+}
+
+object VistaListaUsuarios {
+    Consulta usuarios
+    Muestra lista de usuarios
+}
+
+object ModeloUsuario {
+    Retorna lista de usuarios
+}
+
+object VistaListaProductos {
+    Consulta productos
+    Muestra lista de productos
+}
+
+object ModeloProducto {
+    Retorna lista de productos
+}
+
+object VistaListaPedidos {
+    Consulta pedidos
+    Muestra lista de pedidos
+}
+
+object ModeloPedido {
+    Retorna lista de pedidos
+}
+
+Usuario --> VistaListaUsuarios : Solicita lista
+VistaListaUsuarios --> ModeloUsuario : Consulta
+ModeloUsuario --> VistaListaUsuarios : Retorna datos
+VistaListaUsuarios --> Usuario : Muestra datos
+
+Usuario --> VistaListaProductos : Solicita lista
+VistaListaProductos --> ModeloProducto : Consulta
+ModeloProducto --> VistaListaProductos : Retorna datos
+VistaListaProductos --> Usuario : Muestra datos
+
+Administrador --> VistaListaPedidos : Solicita lista
+VistaListaPedidos --> ModeloPedido : Consulta
+ModeloPedido --> VistaListaPedidos : Retorna datos
+VistaListaPedidos --> Administrador : Muestra datos
+@enduml

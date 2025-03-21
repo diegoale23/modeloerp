@@ -1,0 +1,7 @@
+@startuml
+state "Reporte" as RP {
+    [*] --> Generado
+    Generado --> Exportado : Exportar a PDF o Excel
+    Generado --> Impreso : Imprimir reporte
+}
+@enduml

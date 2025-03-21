@@ -1,0 +1,11 @@
+@startuml
+node "Servidor Web" {
+    [Aplicación Django]
+}
+
+node "Base de Datos" {
+    [PostgreSQL]
+}
+
+[Aplicación Django] --> [PostgreSQL]
+@enduml

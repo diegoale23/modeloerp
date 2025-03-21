@@ -1,0 +1,39 @@
+@startuml
+skinparam objectBorderColor Black
+skinparam objectFontColor Black
+skinparam objectBackgroundColor LightGray
+
+object Usuario {
+    Solicita listar pedidos
+    Solicita crear pedido
+}
+
+object VistaListaPedidos {
+    Consulta pedidos
+    Muestra lista de pedidos
+}
+
+object ModeloPedido {
+    Retorna pedidos
+}
+
+object VistaCrearPedido {
+    Registra pedido
+    Muestra confirmación
+}
+
+object ModeloDetallePedido {
+    Procesa detalles del pedido
+    Actualiza inventario
+}
+
+Usuario --> VistaListaPedidos : Solicita lista
+VistaListaPedidos --> ModeloPedido : Consulta
+ModeloPedido --> VistaListaPedidos : Retorna datos
+VistaListaPedidos --> Usuario : Muestra datos
+
+Usuario --> VistaCrearPedido : Solicita crear pedido
+VistaCrearPedido --> ModeloDetallePedido : Procesa detalles
+ModeloDetallePedido --> VistaCrearPedido : Confirma registro
+VistaCrearPedido --> Usuario : Muestra confirmación
+@enduml

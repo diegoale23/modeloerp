@@ -1,0 +1,8 @@
+@startuml
+package "Gestión de Inventario" {
+    [Vista: lista_productos] --> [Modelo: Producto]
+    [Vista: registrar_movimiento] --> [Modelo: MovimientoInventario]
+    [Modelo: Producto] --> [Base de Datos]
+    [Modelo: MovimientoInventario] --> [Base de Datos]
+}
+@enduml

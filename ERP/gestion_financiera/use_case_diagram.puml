@@ -1,0 +1,27 @@
+@startuml
+left to right direction
+skinparam packageStyle rectangle
+
+actor "Usuario Autenticado" as Usuario
+actor "Administrador" as Admin
+
+package "Gestión Financiera" {
+    usecase "Listar Registros Financieros" as UC1
+    usecase "Ver Detalle de Registro" as UC2
+    usecase "Crear Registro Financiero" as UC3
+    usecase "Editar Registro Financiero" as UC4
+    usecase "Eliminar Registro Financiero" as UC5
+    usecase "Generar Informe Financiero" as UC6
+    usecase "Ver Detalle de Informe" as UC7
+}
+
+Usuario --> UC1
+Usuario --> UC2
+Usuario --> UC6
+Usuario --> UC7
+
+Admin --> UC3
+Admin --> UC4
+Admin --> UC5
+Admin --> UC6
+@enduml

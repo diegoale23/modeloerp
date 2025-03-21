@@ -1,0 +1,7 @@
+@startuml
+package "Gestión de Proveedores" {
+    [Vista: lista_proveedores] --> [Modelo: Proveedor]
+    [Vista: crear_proveedor] --> [Modelo: Proveedor]
+    [Modelo: Proveedor] --> [Base de Datos]
+}
+@enduml

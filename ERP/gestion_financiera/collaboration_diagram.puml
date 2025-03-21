@@ -1,0 +1,39 @@
+@startuml
+skinparam objectBorderColor Black
+skinparam objectFontColor Black
+skinparam objectBackgroundColor LightGray
+
+object Usuario {
+    Solicita listar registros financieros
+    Solicita generar informe financiero
+}
+
+object VistaListaRegistros {
+    Consulta registros financieros
+    Muestra lista de registros
+}
+
+object ModeloRegistroFinanciero {
+    Retorna registros financieros
+}
+
+object VistaGenerarInforme {
+    Genera informe financiero
+    Muestra detalles del informe
+}
+
+object ModeloInformeFinanciero {
+    Procesa datos financieros
+    Retorna informe generado
+}
+
+Usuario --> VistaListaRegistros : Solicita lista
+VistaListaRegistros --> ModeloRegistroFinanciero : Consulta
+ModeloRegistroFinanciero --> VistaListaRegistros : Retorna datos
+VistaListaRegistros --> Usuario : Muestra datos
+
+Usuario --> VistaGenerarInforme : Solicita generar informe
+VistaGenerarInforme --> ModeloInformeFinanciero : Procesa datos
+ModeloInformeFinanciero --> VistaGenerarInforme : Retorna informe
+VistaGenerarInforme --> Usuario : Muestra informe
+@enduml

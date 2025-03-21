@@ -1,0 +1,19 @@
+@startuml
+actor Administrador as Admin
+participant "Vista: lista_usuarios" as ListaUsuarios
+participant "Modelo: Usuario" as ModeloUsuario
+
+Admin -> ListaUsuarios : Solicitar lista de usuarios
+ListaUsuarios -> ModeloUsuario : Consultar usuarios
+ModeloUsuario --> ListaUsuarios : Retorna usuarios
+ListaUsuarios --> Admin : Muestra usuarios
+
+Admin -> ModeloUsuario : Crear usuario
+ModeloUsuario --> Admin : Confirma creación
+
+Admin -> ModeloUsuario : Modificar usuario
+ModeloUsuario --> Admin : Confirma modificación
+
+Admin -> ModeloUsuario : Eliminar usuario
+ModeloUsuario --> Admin : Confirma eliminación
+@enduml

@@ -1,0 +1,22 @@
+@startuml
+left to right direction
+skinparam packageStyle rectangle
+
+actor "Usuario Autenticado" as Usuario
+actor "Administrador" as Admin
+
+package "Gestión de Pedidos" {
+    usecase "Listar Pedidos" as UC1
+    usecase "Ver Detalle de Pedido" as UC2
+    usecase "Crear Pedido" as UC3
+    usecase "Modificar Pedido" as UC4
+    usecase "Eliminar Pedido" as UC5
+}
+
+Usuario --> UC1
+Usuario --> UC2
+
+Admin --> UC3
+Admin --> UC4
+Admin --> UC5
+@enduml

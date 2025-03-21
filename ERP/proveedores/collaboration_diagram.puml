@@ -1,0 +1,34 @@
+@startuml
+skinparam objectBorderColor Black
+skinparam objectFontColor Black
+skinparam objectBackgroundColor LightGray
+
+object Usuario {
+    Solicita listar proveedores
+    Solicita crear proveedor
+}
+
+object VistaListaProveedores {
+    Consulta proveedores
+    Muestra lista de proveedores
+}
+
+object ModeloProveedor {
+    Retorna proveedores
+}
+
+object VistaCrearProveedor {
+    Registra proveedor
+    Muestra confirmación
+}
+
+Usuario --> VistaListaProveedores : Solicita lista
+VistaListaProveedores --> ModeloProveedor : Consulta
+ModeloProveedor --> VistaListaProveedores : Retorna datos
+VistaListaProveedores --> Usuario : Muestra datos
+
+Usuario --> VistaCrearProveedor : Solicita crear proveedor
+VistaCrearProveedor --> ModeloProveedor : Registra proveedor
+ModeloProveedor --> VistaCrearProveedor : Confirma registro
+VistaCrearProveedor --> Usuario : Muestra confirmación
+@enduml

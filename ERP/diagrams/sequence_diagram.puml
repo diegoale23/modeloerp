@@ -1,0 +1,25 @@
+@startuml
+actor Usuario
+actor Administrador as Admin
+participant "Vista: lista_usuarios" as ListaUsuarios
+participant "Modelo: Usuario" as ModeloUsuario
+participant "Vista: lista_productos" as ListaProductos
+participant "Modelo: Producto" as ModeloProducto
+participant "Vista: lista_pedidos" as ListaPedidos
+participant "Modelo: Pedido" as ModeloPedido
+
+Usuario -> ListaUsuarios : Solicitar lista de usuarios
+ListaUsuarios -> ModeloUsuario : Consultar usuarios
+ModeloUsuario --> ListaUsuarios : Retorna lista de usuarios
+ListaUsuarios --> Usuario : Muestra lista de usuarios
+
+Usuario -> ListaProductos : Solicitar lista de productos
+ListaProductos -> ModeloProducto : Consultar productos
+ModeloProducto --> ListaProductos : Retorna lista de productos
+ListaProductos --> Usuario : Muestra lista de productos
+
+Admin -> ListaPedidos : Solicitar lista de pedidos
+ListaPedidos -> ModeloPedido : Consultar pedidos
+ModeloPedido --> ListaPedidos : Retorna lista de pedidos
+ListaPedidos --> Admin : Muestra lista de pedidos
+@enduml

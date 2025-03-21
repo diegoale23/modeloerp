@@ -1,0 +1,21 @@
+@startuml
+actor Usuario
+actor Administrador as Admin
+participant "Vista: lista_registros" as ListaRegistros
+participant "Modelo: RegistroFinanciero" as ModeloRegistro
+participant "Vista: generar_informe" as GenerarInforme
+participant "Modelo: InformeFinanciero" as ModeloInforme
+
+Usuario -> ListaRegistros : Solicitar lista de registros
+ListaRegistros -> ModeloRegistro : Consultar registros
+ModeloRegistro --> ListaRegistros : Retorna registros
+ListaRegistros --> Usuario : Muestra registros
+
+Usuario -> GenerarInforme : Solicitar generación de informe
+GenerarInforme -> ModeloInforme : Procesar datos financieros
+ModeloInforme --> GenerarInforme : Retorna informe generado
+GenerarInforme --> Usuario : Muestra informe
+
+Admin -> ModeloRegistro : Crear, editar o eliminar registro
+ModeloRegistro --> Admin : Confirma operación
+@enduml

@@ -1,0 +1,38 @@
+@startuml
+skinparam objectBorderColor Black
+skinparam objectFontColor Black
+skinparam objectBackgroundColor LightGray
+
+object Administrador {
+    Solicita listar usuarios
+    Solicita crear usuario
+    Solicita modificar usuario
+    Solicita eliminar usuario
+}
+
+object VistaListaUsuarios {
+    Consulta usuarios
+    Muestra lista de usuarios
+}
+
+object ModeloUsuario {
+    Retorna usuarios
+    Registra usuario
+    Actualiza usuario
+    Elimina usuario
+}
+
+Administrador --> VistaListaUsuarios : Solicita lista
+VistaListaUsuarios --> ModeloUsuario : Consulta
+ModeloUsuario --> VistaListaUsuarios : Retorna datos
+VistaListaUsuarios --> Administrador : Muestra datos
+
+Administrador --> ModeloUsuario : Solicita crear usuario
+ModeloUsuario --> Administrador : Confirma creación
+
+Administrador --> ModeloUsuario : Solicita modificar usuario
+ModeloUsuario --> Administrador : Confirma modificación
+
+Administrador --> ModeloUsuario : Solicita eliminar usuario
+ModeloUsuario --> Administrador : Confirma eliminación
+@enduml

@@ -1,0 +1,8 @@
+@startuml
+package "Gestión Financiera" {
+    [Vista: lista_registros] --> [Modelo: RegistroFinanciero]
+    [Vista: generar_informe] --> [Modelo: InformeFinanciero]
+    [Modelo: RegistroFinanciero] --> [Base de Datos]
+    [Modelo: InformeFinanciero] --> [Base de Datos]
+}
+@enduml

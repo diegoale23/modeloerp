@@ -14,6 +14,8 @@ ModeloERP es un sistema de gestión empresarial desarrollado en Django. Este pro
   - [Proveedores](#proveedores)
   - [Reportes](#reportes)
 - [Diagramas UML](#diagramas-uml)
+  - [Diagramas de Clases](#diagrama-de-clases)
+  - [Diagrama Entidad-Relación](#diagrama-entidad-relación)
 - [Contribuciones](#contribuciones)
 - [Licencia](#licencia)
 
@@ -85,9 +87,13 @@ El modelo `Reporte` permite generar reportes financieros, de inventario, pedidos
 
 ## Diagramas UML
 
+### Diagrama de Clases
+
 ![Diagrama de Clases](out/diagrama_clases/diagrama_clases.png)
 
-![Diagrama Entidad-Relación](out/diagrama_clases/entidad_relacion_erp.png)
+### Diagrama Entidad-Relación
+
+![Diagrama Entidad-Relación](out/entidad_relacion_erp/entidad_relacion_erp.png)
 
 ### Usuarios
 

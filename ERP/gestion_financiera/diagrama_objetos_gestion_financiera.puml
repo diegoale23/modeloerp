@@ -1,0 +1,27 @@
+@startuml
+object Registro1 {
+    idRegistro = 1
+    tipo = "ingreso"
+    monto = 5000.00
+    descripcion = "Venta de laptops"
+    fecha = "2025-03-20"
+}
+
+object Registro2 {
+    idRegistro = 2
+    tipo = "gasto"
+    monto = 2000.00
+    descripcion = "Compra de accesorios"
+    fecha = "2025-03-21"
+}
+
+object Informe1 {
+    idInforme = 1
+    rango_inicio = "2025-03-01"
+    rango_fin = "2025-03-31"
+    contenido = "Resumen financiero del mes"
+}
+
+Informe1 --> Registro1 : incluye
+Informe1 --> Registro2 : incluye
+@enduml

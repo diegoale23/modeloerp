@@ -1,0 +1,23 @@
+@startuml
+object Pedido1 {
+    idPedido = 1
+    cliente = "Juan Pérez"
+    fecha = "2025-03-22"
+    total = 1525.00
+}
+
+object Producto1 {
+    idProducto = 101
+    nombre = "Laptop"
+    cantidad = 1
+}
+
+object Producto2 {
+    idProducto = 102
+    nombre = "Mouse"
+    cantidad = 1
+}
+
+Pedido1 --> Producto1 : contiene
+Pedido1 --> Producto2 : contiene
+@enduml

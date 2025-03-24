@@ -1,0 +1,27 @@
+@startuml
+object Producto1 {
+    idProducto = 101
+    nombre = "Laptop"
+    descripcion = "Laptop de alta gama"
+    precio = 1500.00
+    stock = 10
+}
+
+object Producto2 {
+    idProducto = 102
+    nombre = "Mouse"
+    descripcion = "Mouse inalámbrico"
+    precio = 25.00
+    stock = 50
+}
+
+object Movimiento1 {
+    idMovimiento = 1
+    tipo = "entrada"
+    cantidad = 5
+    fecha = "2025-03-24"
+    descripcion = "Nueva entrega de laptops"
+}
+
+Producto1 <-- Movimiento1 : afecta
+@enduml

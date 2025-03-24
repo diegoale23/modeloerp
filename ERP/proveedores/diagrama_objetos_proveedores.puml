@@ -1,0 +1,20 @@
+@startuml
+object Proveedor1 {
+    idProveedor = 1
+    nombre = "Tech Supplies"
+    contacto = "Carlos López"
+    direccion = "Av. Principal 123"
+    telefono = "555-1234"
+    email = "contacto@techsupplies.com"
+}
+
+object Producto1 {
+    idProducto = 101
+    nombre = "Laptop"
+    descripcion = "Laptop de alta gama"
+    precio = 1500.00
+    stock = 10
+}
+
+Proveedor1 --> Producto1 : suministra
+@enduml

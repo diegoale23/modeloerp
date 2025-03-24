@@ -1,0 +1,19 @@
+@startuml
+object Usuario1 {
+    idUsuario = 1
+    nombre = "Juan"
+    apellido = "Pérez"
+    rol = "administrador"
+    email = "juan.perez@example.com"
+}
+
+object Usuario2 {
+    idUsuario = 2
+    nombre = "Ana"
+    apellido = "Gómez"
+    rol = "empleado"
+    email = "ana.gomez@example.com"
+}
+
+Usuario1 --> Usuario2 : supervisa
+@enduml

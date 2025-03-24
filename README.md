@@ -320,8 +320,3 @@ La base de datos utilizada es **PostgreSQL**, que ofrece las siguientes ventajas
 
 Este proyecto está licenciado bajo la [MIT License](LICENSE).
 
-2. **Formato de los diagramas**: Si los diagramas no están en formato `.png`, ajusta las extensiones en los enlaces (por ejemplo, `.svg` o `.jpg`).
-
-3. **Repositorio**: Reemplaza `https://github.com/tu_usuario/modeloerp.git` con la URL de tu repositorio.
-
-¿Te gustaría agregar algo más o necesitas ayuda con los diagramas?

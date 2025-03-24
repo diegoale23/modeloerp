@@ -8,18 +8,19 @@
 
 ## Índice
 
-- [Inicio de Sesión].(#inicio-de-sesión).
-2.- [Gestión de Usuarios].(#gestión-de-usuario)
-3.- Gestión de Inventario
-4.- Gestión Financiera
-5.- Gestión de Proveedores
-6.- Gestión de Pedidos
-7.- Generación de Reportes
-8.- Cierre de Sesión
+- [Inicio de Sesión](#inicio-de-sesión)
+- [Gestión de Usuarios](#gestión-de-usuario)
+- [Gestión de Inventario](#gestión-de-inventario)
+- [Gestión Financiera](#gestion-financiera)
+- [Gestión de Proveedores](#gestión-de-proveedores)
+- [Gestión de Pedidos](#gestion-de-pedidos)
+- [Generación de Reportes](#generación-de-reportes)
+- [Cierre de Sesión](#cierre-de-sesión)
+- [Notas Adicionales](#notas-adicionales)
 
 ---
 
-## 1. Inicio de Sesión
+## Inicio de Sesión
 
 1. Accede al sistema desde la URL principal del proyecto.
 2. Ingresa tus credenciales:
@@ -30,7 +31,7 @@
 
 ---
 
-## 2. Gestión de Usuarios
+## Gestión de Usuarios
 
 ### Crear un Usuario
 1. Ve al módulo **Usuarios** desde el menú principal.
@@ -53,7 +54,7 @@
 
 ---
 
-## 3. Gestión de Inventario
+## Gestión de Inventario
 
 ### Agregar un Producto
 1. Ve al módulo **Inventario**.
@@ -76,7 +77,7 @@
 
 ---
 
-## 4. Gestión Financiera
+## Gestión Financiera
 
 ### Registrar un Ingreso o Gasto
 1. Ve al módulo **Gestión Financiera**.
@@ -97,7 +98,7 @@
 
 ---
 
-## 5. Gestión de Proveedores
+## Gestión de Proveedores
 
 ### Agregar un Proveedor
 1. Ve al módulo **Proveedores**.
@@ -118,7 +119,7 @@
 
 ---
 
-## 6. Gestión de Pedidos
+## Gestión de Pedidos
 
 ### Crear un Pedido
 1. Ve al módulo **Pedidos**.
@@ -134,7 +135,7 @@
 
 ---
 
-## 7. Generación de Reportes
+## Generación de Reportes
 
 ### Generar un Reporte
 1. Ve al módulo **Reportes**.
@@ -149,7 +150,7 @@
 
 ---
 
-## 8. Cierre de Sesión
+## Cierre de Sesión
 
 1. Haz clic en tu nombre de usuario en la esquina superior derecha.
 2. Selecciona **Cerrar Sesión**.

@@ -12,6 +12,7 @@ ModeloERP es un sistema de gestión empresarial desarrollado en Django. Este pro
   - [Inventario](#inventario)
   - [Gestión Financiera](#gestión-financiera)
   - [Proveedores](#proveedores)
+  - [Pedidos](#pedidos)
   - [Reportes](#reportes)
 - [Diagramas UML](#diagramas-uml)
   - [Diagramas de Clases](#diagrama-de-clases)
@@ -79,6 +80,9 @@ El modelo `Usuario` extiende el modelo `AbstractUser` de Django y permite gestio
 
 El modelo `Proveedor` permite gestionar proveedores y sus productos asociados mediante una relación de muchos a muchos.
 
+### Pedidos
+El modelo Pedido permite gestionar los pedidos realizados por los clientes. Incluye información como el cliente, los productos solicitados, la cantidad y el total del pedido.
+
 ### Reportes
 
 El modelo `Reporte` permite generar reportes financieros, de inventario, pedidos y proveedores. Los reportes se generan dinámicamente según los parámetros proporcionados.
@@ -99,6 +103,7 @@ El modelo `Reporte` permite generar reportes financieros, de inventario, pedidos
 
 ![Diagramas de Caso de Uso](out/ERP/usuarios/use_case_diagram/use_case_diagram.png)
 
+
 ### Inventario
 
 ![Diagramas de Caso de Uso](out/ERP/inventario/use_case_diagram/use_case_diagram.png)
@@ -110,6 +115,10 @@ El modelo `Reporte` permite generar reportes financieros, de inventario, pedidos
 ### Proveedores
 
 ![Diagramas de Caso de Uso](out/ERP/proveedores/use_case_diagram/use_case_diagram.png)
+
+### Pedidos
+
+![Diagramas de Caso de Uso](out/ERP/pedidos/use_case_diagram/use_case_diagram.png)
 
 ### Reportes
 

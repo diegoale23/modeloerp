@@ -34,6 +34,7 @@ ModeloERP es un sistema modular que permite gestionar diferentes aspectos de una
 - **Inventario**: Gestión de productos y movimientos de inventario (entradas y salidas).
 - **Gestión Financiera**: Registro de ingresos y gastos, generación de informes financieros.
 - **Proveedores**: Administración de proveedores y sus productos asociados.
+- **Pedidos**: Gestión de pedidos realizados por los clientes.
 - **Reportes**: Generación de reportes dinámicos para finanzas, inventario, pedidos y proveedores.
 
 ---
@@ -140,10 +141,24 @@ El modelo `Reporte` permite generar reportes financieros, de inventario, pedidos
 ![Diagramas de Objetos](out/ERP/inventario/diagrama_objetos_inventario/diagrama_objetos_inventario.png)
 
 - Diagramas de Secuencia
+
+![Diagramas de Secuencia](out/ERP/inventario/sequence_diagram/sequence_diagram.png)
   
 - Diagramas de Colaboración
 
+![Diagramas de Colaboración](out/ERP/inventario/collaboration_diagram/collaboration_diagram.png)
+
 - Diagramas de Estados
+
+![Diagramas de Estados](out/ERP/inventario/state_diagram/state_diagram.png)
+
+- Diagramas de Componentes
+
+![Diagramas de Componentes](out/ERP/inventariocomponent_diagram/component_diagram.png)
+
+- Diagramas de Despliegue
+
+![Diagramas de Despliegue](out/ERP/inventario/deployment_diagram/deployment_diagram.png)
   
 ### Gestión Financiera
 
@@ -156,14 +171,24 @@ El modelo `Reporte` permite generar reportes financieros, de inventario, pedidos
 ![Diagramas de Objetos](out/ERP/gestion_financiera/diagrama_objetos_gestion_financiera/diagrama_objetos_gestion_financiera.png)
 
 - Diagramas de Secuencia
+
+![Diagramas de Secuencia](out/ERP/gestion_financiera/sequence_diagram/sequence_diagram.png)
   
 - Diagramas de Colaboración
 
+![Diagramas de Colaboración](out/ERP/gestion_financiera/collaboration_diagram/collaboration_diagram.png)
+
 - Diagramas de Estados
+
+![Diagramas de Estados](out/ERP/gestion_financiera/state_diagram/state_diagram.png)
 
 - Diagramas de Componentes
 
+![Diagramas de Componentes](out/ERP/gestion_financiera/component_diagram/component_diagram.png)
+
 - Diagramas de Despliegue
+
+![Diagramas de Despliegue](out/ERP/gestion_financiera/deployment_diagram/deployment_diagram.png)
   
 ### Proveedores
 
@@ -176,14 +201,24 @@ El modelo `Reporte` permite generar reportes financieros, de inventario, pedidos
 ![Diagramas de Objetos](out/ERP/proveedores/diagrama_objetos_proveedores/diagrama_objetos_proveedores.png)
 
 - Diagramas de Secuencia
+
+![Diagramas de Secuencia](out/ERP/proveedores/sequence_diagram/sequence_diagram.png)
   
 - Diagramas de Colaboración
 
+![Diagramas de Colaboración](out/ERP/proveedores/collaboration_diagram/collaboration_diagram.png)
+
 - Diagramas de Estados
+
+![Diagramas de Estados](out/ERP/proveedores/state_diagram/state_diagram.png)
 
 - Diagramas de Componentes
 
+![Diagramas de Componentes](out/ERP/proveedores/component_diagram/component_diagram.png)
+
 - Diagramas de Despliegue
+
+![Diagramas de Despliegue](out/ERP/proveedores/deployment_diagram/deployment_diagram.png)
   
 ### Pedidos
 
@@ -196,14 +231,24 @@ El modelo `Reporte` permite generar reportes financieros, de inventario, pedidos
 ![Diagramas de Objetos](out/ERP/pedidos/diagrama_objetos_pedidos/diagrama_objetos_pedidos.png)
 
 - Diagramas de Secuencia
+
+![Diagramas de Secuencia](out/ERP/pedidos/sequence_diagram/sequence_diagram.png)
   
 - Diagramas de Colaboración
 
+![Diagramas de Colaboración](out/ERP/pedidos/collaboration_diagram/collaboration_diagram.png)
+
 - Diagramas de Estados
+
+![Diagramas de Estados](out/ERP/pedidos/state_diagram/state_diagram.png)
 
 - Diagramas de Componentes
 
+![Diagramas de Componentes](out/ERP/pedidos/component_diagram/component_diagram.png)
+
 - Diagramas de Despliegue
+
+![Diagramas de Despliegue](out/ERP/pedidos/deployment_diagram/deployment_diagram.png)
 
 ### Reportes
 
@@ -213,14 +258,24 @@ El modelo `Reporte` permite generar reportes financieros, de inventario, pedidos
 
 - Diagramas de Secuencia
   
+![Diagramas de Secuencia](out/ERP/reportes/sequence_diagram/sequence_diagram.png)
+  
 - Diagramas de Colaboración
+
+![Diagramas de Colaboración](out/ERP/reportes/collaboration_diagram/collaboration_diagram.png)
 
 - Diagramas de Estados
 
+![Diagramas de Estados](out/ERP/reportes/state_diagram/state_diagram.png)
+
 - Diagramas de Componentes
 
+![Diagramas de Componentes](out/ERP/reportes/component_diagram/component_diagram.png)
+
 - Diagramas de Despliegue
-  
+
+![Diagramas de Despliegue](out/ERP/reportes/deployment_diagram/deployment_diagram.png)
+
 ---
 
 ## Contribuciones

@@ -101,36 +101,46 @@ El modelo `Reporte` permite generar reportes financieros, de inventario, pedidos
 
 ### Usuarios
 
+Casos de Uso
 ![Diagramas de Caso de Uso](out/ERP/usuarios/use_case_diagram/use_case_diagram.png)
 
+Diagramas de Objetos
 ![Diagramas de Objetos](out/ERP/usuarios/diagrama_objetos_usuarios/diagrama_objetos_usuarios.png)
 
 ### Inventario
 
+Casos de Uso
 ![Diagramas de Caso de Uso](out/ERP/inventario/use_case_diagram/use_case_diagram.png)
 
+
+Diagramas de Objetos
 ![Diagramas de Objetos](out/ERP/inventario/diagrama_objetos_inventario/diagrama_objetos_inventario.png)
 
 ### Gestión Financiera
 
+Casos de Uso
 ![Diagramas de Caso de Uso](out/ERP/gestion_financiera/use_case_diagram/use_case_diagram.png)
 
+Diagramas de Objetos
 ![Diagramas de Objetos](out/ERP/gestion_financiera/diagrama_objetos_gestion_financiera/diagrama_objetos_gestion_financiera.png)
 
 ### Proveedores
 
+Casos de Uso
 ![Diagramas de Caso de Uso](out/ERP/proveedores/use_case_diagram/use_case_diagram.png)
 
+Diagramas de Objetos
 ![Diagramas de Objetos](out/ERP/proveedores/diagrama_objetos_proveedores/diagrama_objetos_proveedores.png)
 
 ### Pedidos
 
+Casos de Uso
 ![Diagramas de Caso de Uso](out/ERP/pedidos/use_case_diagram/use_case_diagram.png)
 
+Diagramas de Objetos
 ![Diagramas de Objetos](out/ERP/pedidos/diagrama_objetos_pedidos/diagrama_objetos_pedidos.png)
 
 ### Reportes
-
 ![Diagramas de Caso de Uso](out/ERP/reportes/use_case_diagram/use_case_diagram.png)
 
 ---

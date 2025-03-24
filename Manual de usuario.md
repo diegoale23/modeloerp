@@ -8,14 +8,14 @@
 
 ## Índice
 
-1. [Inicio de Sesión].(#inicio-de-sesión).
-2. Gestión de Usuarios
-3. Gestión de Inventario
-4. Gestión Financiera
-5. Gestión de Proveedores
-6. Gestión de Pedidos
-7. Generación de Reportes
-8. Cierre de Sesión
+- [Inicio de Sesión].(#inicio-de-sesión).
+2.- [Gestión de Usuarios].(#gestión-de-usuario)
+3.- Gestión de Inventario
+4.- Gestión Financiera
+5.- Gestión de Proveedores
+6.- Gestión de Pedidos
+7.- Generación de Reportes
+8.- Cierre de Sesión
 
 ---
 

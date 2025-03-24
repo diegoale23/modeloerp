@@ -24,6 +24,7 @@
 
 1. Accede al sistema desde la URL principal del proyecto.
 
+http://127.0.0.1:5000/
   
 3. Ingresa tus credenciales:
 

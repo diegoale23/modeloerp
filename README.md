@@ -17,7 +17,7 @@ ModeloERP es un sistema de gestión empresarial desarrollado en Django. Este pro
 - [Diagramas](#diagramas)
   - [Diagramas de Clases](#diagrama-de-clases)
   - [Diagrama Entidad-Relación](#diagrama-entidad-relación)
--[Descripción Técnica del Proyecto](#Descripción-Técnica-del-Proyecto)
+- [Descripción Técnica del Proyecto](#descripción-técnica-del-proyecto)
 - [Contribuciones](#contribuciones)
 - [Licencia](#licencia)
 
@@ -278,8 +278,38 @@ El modelo `Reporte` permite generar reportes financieros, de inventario, pedidos
 ![Diagramas de Despliegue](out/ERP/reportes/deployment_diagram/deployment_diagram.png)
 
 ---
-## Descripción Tecnica del Proyecto
 
+## Descripción Técnica del Proyecto
+
+ModeloERP es un sistema de gestión empresarial desarrollado utilizando las siguientes tecnologías y herramientas:
+
+- **Framework Backend**: El proyecto está construido con **Django**, un framework web de alto nivel en Python que facilita el desarrollo rápido y limpio de aplicaciones web.
+- **Base de Datos**: Se utiliza **PostgreSQL** como sistema de gestión de bases de datos relacional, conocido por su robustez, escalabilidad y soporte para consultas avanzadas.
+- **Frontend**: Las interfaces de usuario están diseñadas utilizando las plantillas de Django, con soporte para HTML, CSS y JavaScript para una experiencia de usuario interactiva.
+- **Autenticación**: Django proporciona un sistema de autenticación integrado que se ha personalizado para gestionar roles como `administrador`, `empleado` y `cliente`.
+- **Gestión de Dependencias**: Las dependencias del proyecto se manejan con **pip** y están listadas en el archivo `requirements.txt`.
+- **Servidor de Desarrollo**: Durante el desarrollo, se utiliza el servidor integrado de Django. Para producción, se recomienda usar servidores como **Gunicorn** o **uWSGI** junto con **Nginx**.
+
+### Arquitectura del Proyecto
+
+El proyecto sigue una arquitectura modular, donde cada funcionalidad principal está organizada en aplicaciones independientes dentro del proyecto Django. Estas aplicaciones incluyen:
+
+- **Usuarios**: Gestión de usuarios y roles.
+- **Inventario**: Gestión de productos y movimientos de inventario.
+- **Gestión Financiera**: Registro de ingresos y gastos, generación de informes financieros.
+- **Proveedores**: Administración de proveedores y sus productos.
+- **Pedidos**: Gestión de pedidos realizados por los clientes.
+- **Reportes**: Generación de reportes dinámicos para diferentes áreas del sistema.
+
+### Base de Datos
+
+La base de datos utilizada es **PostgreSQL**, que ofrece las siguientes ventajas:
+- Soporte para transacciones ACID.
+- Consultas avanzadas y soporte para JSON.
+- Escalabilidad para manejar grandes volúmenes de datos.
+- Integración nativa con Django a través de su ORM (Object-Relational Mapping).
+
+---
 ## Contribuciones
 
 ¡Las contribuciones son bienvenidas! Por favor, abre un issue o envía un pull request para sugerir mejoras o reportar errores.

@@ -319,18 +319,4 @@ La base de datos utilizada es **PostgreSQL**, que ofrece las siguientes ventajas
 ## Licencia
 
 Este proyecto está licenciado bajo la [MIT License](LICENSE).
-```
 
-### Notas:
-1. **Ubicación de los diagramas**: Asegúrate de que los diagramas estén en las rutas especificadas:
-   - `out/usuarios/diagrama_usuarios.png`
-   - `out/inventario/diagrama_inventario.png`
-   - `out/gestion_financiera/diagrama_gestion_financiera.png`
-   - `out/proveedores/diagrama_proveedores.png`
-   - `out/reportes/diagrama_reportes.png`
-
-2. **Formato de los diagramas**: Si los diagramas no están en formato `.png`, ajusta las extensiones en los enlaces (por ejemplo, `.svg` o `.jpg`).
-
-3. **Repositorio**: Reemplaza `https://github.com/tu_usuario/modeloerp.git` con la URL de tu repositorio.
-
-¿Te gustaría agregar algo más o necesitas ayuda con los diagramas?

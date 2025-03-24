@@ -101,48 +101,126 @@ El modelo `Reporte` permite generar reportes financieros, de inventario, pedidos
 
 ### Usuarios
 
-Casos de Uso
+- Casos de Uso
+  
 ![Diagramas de Caso de Uso](out/ERP/usuarios/use_case_diagram/use_case_diagram.png)
 
-Diagramas de Objetos
+- Diagramas de Objetos
+  
 ![Diagramas de Objetos](out/ERP/usuarios/diagrama_objetos_usuarios/diagrama_objetos_usuarios.png)
+
+- Diagramas de Secuencia
+
+![Diagramas de Secuencia](out/ERP/usuarios/sequence_diagram/sequence_diagram.png)
+  
+- Diagramas de Colaboración
+
+![Diagramas de Colaboración](out/ERP/usuarios/collaboration_diagram/collaboration_diagram.png)
+
+- Diagramas de Estados
+
+![Diagramas de Estados](out/ERP/usuarios/state_diagram/state_diagram.png)
+
+- Diagramas de Componentes
+
+![Diagramas de Componentes](out/ERP/usuarios/component_diagram/component_diagram.png)
+
+- Diagramas de Despliegue
+
+![Diagramas de Despliegue](out/ERP/usuarios/deployment_diagram/deployment_diagram.png)
 
 ### Inventario
 
-Casos de Uso
+- Casos de Uso
+  
 ![Diagramas de Caso de Uso](out/ERP/inventario/use_case_diagram/use_case_diagram.png)
 
-
-Diagramas de Objetos
+- Diagramas de Objetos
+  
 ![Diagramas de Objetos](out/ERP/inventario/diagrama_objetos_inventario/diagrama_objetos_inventario.png)
 
+- Diagramas de Secuencia
+  
+- Diagramas de Colaboración
+
+- Diagramas de Estados
+  
 ### Gestión Financiera
 
-Casos de Uso
+- Casos de Uso
+  
 ![Diagramas de Caso de Uso](out/ERP/gestion_financiera/use_case_diagram/use_case_diagram.png)
 
-Diagramas de Objetos
+- Diagramas de Objetos
+  
 ![Diagramas de Objetos](out/ERP/gestion_financiera/diagrama_objetos_gestion_financiera/diagrama_objetos_gestion_financiera.png)
 
+- Diagramas de Secuencia
+  
+- Diagramas de Colaboración
+
+- Diagramas de Estados
+
+- Diagramas de Componentes
+
+- Diagramas de Despliegue
+  
 ### Proveedores
 
-Casos de Uso
+- Casos de Uso
+  
 ![Diagramas de Caso de Uso](out/ERP/proveedores/use_case_diagram/use_case_diagram.png)
 
-Diagramas de Objetos
+- Diagramas de Objetos
+  
 ![Diagramas de Objetos](out/ERP/proveedores/diagrama_objetos_proveedores/diagrama_objetos_proveedores.png)
 
+- Diagramas de Secuencia
+  
+- Diagramas de Colaboración
+
+- Diagramas de Estados
+
+- Diagramas de Componentes
+
+- Diagramas de Despliegue
+  
 ### Pedidos
 
-Casos de Uso
+- Casos de Uso
+  
 ![Diagramas de Caso de Uso](out/ERP/pedidos/use_case_diagram/use_case_diagram.png)
 
-Diagramas de Objetos
+- Diagramas de Objetos
+  
 ![Diagramas de Objetos](out/ERP/pedidos/diagrama_objetos_pedidos/diagrama_objetos_pedidos.png)
 
+- Diagramas de Secuencia
+  
+- Diagramas de Colaboración
+
+- Diagramas de Estados
+
+- Diagramas de Componentes
+
+- Diagramas de Despliegue
+
 ### Reportes
+
+- Casos de Uso
+  
 ![Diagramas de Caso de Uso](out/ERP/reportes/use_case_diagram/use_case_diagram.png)
 
+- Diagramas de Secuencia
+  
+- Diagramas de Colaboración
+
+- Diagramas de Estados
+
+- Diagramas de Componentes
+
+- Diagramas de Despliegue
+  
 ---
 
 ## Contribuciones

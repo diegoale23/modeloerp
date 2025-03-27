@@ -156,7 +156,7 @@ El modelo `Reporte` permite generar reportes financieros, de inventario, pedidos
 
 - Diagramas de Componentes
 
-![Diagramas de Componentes](out/ERP/inventariocomponent_diagram/component_diagram.png)
+![Diagramas de Componentes](out/ERP/inventario/component_diagram/component_diagram.png)
 
 - Diagramas de Despliegue
 

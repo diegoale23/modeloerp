@@ -24,6 +24,7 @@
 
 1. Accede al sistema desde la URL principal del proyecto.
 
+http://127.0.0.1:5000/
   
 3. Ingresa tus credenciales:
 
@@ -209,8 +210,8 @@
 
 - **La creación de usuarios para acceso al sistema esta delegada exclusivamente al superusuario**:
   - **Administrador**: Acceso completo a todas las funcionalidades.
-  - **GrupoFinanciera**: Acceso a los formularios de gestión financiera, limitadas las funcionalidades de acuerdo al jefe de la oficina Financiera.
-  - **Inventarios y Almacenistas**: Acceso a los formularios de Inventarios, proveedores,clientes y pedidos limitadas las funcionalidades de acuerdo al jefe de la oficina Financiera.
+  - **GrupoFinanciera**: Acceso a los formularios de gestión financiera y reportes, limitadas las funcionalidades de acuerdo al jefe de la oficina Financiera.
+  - **Inventarios y Almacenistas**: Acceso a los formularios de Inventarios, proveedores, clientes, pedidos y reportes; limitadas las funcionalidades de acuerdo al jefe de la oficina Financiera.
 
 - **Recomendaciones**:
   - Mantén tus credenciales seguras.

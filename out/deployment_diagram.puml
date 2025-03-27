@@ -1,0 +1,23 @@
+@startuml
+node "Servidor Web" {
+    [Aplicación Django]
+    [Módulo Usuarios]
+    [Módulo Inventario]
+    [Módulo Gestión Financiera]
+    [Módulo Proveedores]
+    [Módulo Pedidos]
+    [Módulo Reportes]
+}
+
+node "Base de Datos" {
+    [PostgreSQL]
+}
+
+[Aplicación Django] --> [PostgreSQL] : ORM (Django Models)
+[Módulo Usuarios] --> [Aplicación Django] : Gestión de usuarios
+[Módulo Inventario] --> [Aplicación Django] : Gestión de productos y movimientos
+[Módulo Gestión Financiera] --> [Aplicación Django] : Gestión de ingresos y gastos
+[Módulo Proveedores] --> [Aplicación Django] : Gestión de proveedores
+[Módulo Pedidos] --> [Aplicación Django] : Gestión de pedidos
+[Módulo Reportes] --> [Aplicación Django] : Generación de reportes
+@enduml
